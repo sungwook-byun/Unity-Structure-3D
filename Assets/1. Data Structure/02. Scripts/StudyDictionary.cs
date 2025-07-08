@@ -1,38 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PersonData
+{
+    public int age;
+    public string name;
+    public float heigth;
+    public float weight;
+
+    public PersonData(int age, string name, float heigth, float weight  )
+    {
+        this.age = age;
+        this.name = name;
+        this.heigth = heigth;
+        this.weight = weight;
+    }
+}
+
+
 public class StudyDictionary : MonoBehaviour
 {
-    public Dictionary<string, int> persons = new Dictionary<string, int>();
-
+    public Dictionary<string, PersonData> persons = new Dictionary<string, PersonData>();
     private void Start()
     {
-        persons.Add("철수", 10);
-        persons.Add("영희", 15); 
-        persons.Add("동수", 17);
+        persons.Add("철수", new PersonData(10, "철수", 150f, 30f));
+        persons.Add("철수", new PersonData(10, "영희", 150f, 30f));
+        persons.Add("철수", new PersonData(10, "동수", 150f, 30f));
 
-        persons["철수"] = 13; // 철수 이름으로 덮어쓰기.
-
-        int age = persons["철수"]; // 키값으로 value 값을 찾음
-        Debug.Log($"철수의 나이는 {age} 입니다.");
-
-        foreach (var person in persons)
-        {
-            if (person.Value == 15)
-                Debug.Log($"나이가 15인 사람의 이름은 {person.Key} 입니다.");
-
-            Debug.Log($"person.Key 의 나이는 {person.Value} 입니다");
-        }
-
-
-        if (persons.ContainsKey("철수"))
-        {
-            Debug.Log("사람중에 철수가 있음");
-        }
-
-        if (persons.ContainsValue(17))
-        {
-            Debug.Log("17살인 사람이 있다.");
-        }
+        Debug.Log(persons["철수"].age);
+        Debug.Log(persons["철수"].name);
+        Debug.Log(persons["철수"].weight);
+        Debug.Log(persons["철수"].heigth);
     }
 }
