@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class HanoiTower : MonoBehaviour
@@ -10,8 +11,12 @@ public class HanoiTower : MonoBehaviour
     public GameObject[] donutPrefab;
     public BoardBar[] bars; // L, C, R
 
+    public TextMeshProUGUI countTextUI;
+
     public static GameObject selectedDonut;
     public static bool isSelected;
+    public static BoardBar currBar;
+    public static int moveCount;
 
     IEnumerator Start()
     {
@@ -24,5 +29,19 @@ public class HanoiTower : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
         }
+        moveCount = 0;
+        countTextUI.text = moveCount.ToString();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            currBar.barStack.Push(selectedDonut);
+
+            isSelected = false;
+            selectedDonut = null;
+        }
+        countTextUI.text = moveCount.ToString();
     }
 }
