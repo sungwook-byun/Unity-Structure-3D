@@ -1,27 +1,66 @@
-using Unity.VisualScripting;
+#define DEBUG_TEXT
+
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFire : MonoBehaviour
+
+public class PlayerFire : Singleton<PlayerFire>
 {
-    private GameObject bulletFactory;
+    public GameObject bulletFactory;
     public GameObject firePosition;
 
-    private void Start()
-    {
-        bulletFactory = Resources.Load<GameObject>("Bullet"); // 리소스 폴더에서 총알 프리팹 로드
-    }
+    public int poolSize = 10;
 
-    private void Update()
+    // public GameObject[] bulletObjectPool; // 배열
+    // public List<GameObject> bulletObjectPool; // 리스트
+    public Queue<GameObject> bulletObjectPool; // 큐
+
+    void Start()
     {
-    if (Input.GetButtonDown("Fire1"))
+        // bulletObjectPool = new GameObject[poolSize]; // 배열
+        // bulletObjectPool = new List<GameObject>(); // 리스트
+        bulletObjectPool = new Queue<GameObject>(); // 큐
+
+        for (int i = 0; i < poolSize; i++)
         {
             GameObject bullet = Instantiate(bulletFactory);
-            bullet.transform.position = firePosition.transform.position; // 위치 초기화
-            // bullet.transform.rotation = firePosition.transform.rotation; // 회전 초기화
 
-            // bullet.transform.SetPositionAndRotation(위치, 회전); // 위치와 회전을 한번에 적용하는 기능
-            // bullet.transform.SetParent(부모); // 부모 오브젝트 설정
+            // bulletObjectPool[i] = bullet; // 배열
+            // bulletObjectPool.Add(bullet); // 리스트
+            bulletObjectPool.Enqueue(bullet); // 큐
+
+            bullet.SetActive(false);
         }
-        
+    }
+
+    void Update()
+    {
+#if UNITY_STANDARDALONE || UNITY_EDITOR || DEBUG_TEST
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Debug.Log("마우스 클릭");
+            // 큐
+            if (bulletObjectPool.Count > 0)
+            {
+                GameObject bullet = bulletObjectPool.Dequeue();
+                bullet.SetActive(true);
+                bullet.transform.position = firePosition.transform.position;
+            }
+        }
+#elif UNITY_ANDROID || UNITY_IOS
+        if (Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            Debug.Log("손가락 터치");
+
+            if (bulletObjectPool.Count > 0)
+            {
+                GameObject bullet = bulletObjectPool.Dequeue();
+                bullet.SetActive(true);
+                bullet.transform.position = firePosition.transform.position;
+            }
+        }
+#else
+        Debug.Log("그 외 나머지 플랫폼");
+#endif
     }
 }
