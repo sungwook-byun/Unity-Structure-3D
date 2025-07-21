@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FPSPlayerMove : MonoBehaviour
+public class FPS_Player_Move : MonoBehaviour
 {
     public float speed = 5f;
 

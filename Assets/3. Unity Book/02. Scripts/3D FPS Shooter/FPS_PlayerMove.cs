@@ -1,6 +1,8 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class FPS_Player_Move : MonoBehaviour
+public class FPS_PlayerMove : MonoBehaviour
 {
     private CharacterController cc;
 
@@ -12,6 +14,13 @@ public class FPS_Player_Move : MonoBehaviour
     public float jumpPower = 10f; // 점프 파워
     public bool isJumping = false; // 점프 중인지 여부
 
+    public int hp = 20;
+
+    private int maxHp = 20; // 최대 체력
+    public Slider hpSlider;
+
+    public GameObject hitEffect;
+
     private void Start()
     {
         cc = GetComponent<CharacterController>();
@@ -20,6 +29,9 @@ public class FPS_Player_Move : MonoBehaviour
 
     void Update()
     {
+        if (FPSGameManager.Instance.gState != FPSGameManager.GameState.Run)
+            return;
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
@@ -31,7 +43,7 @@ public class FPS_Player_Move : MonoBehaviour
 
         // 중력 적용
         yVelocity += gravity * Time.deltaTime;
-        dir.y = yVelocity; 
+        dir.y = yVelocity;
 
         cc.Move(dir * moveSpeed * Time.deltaTime); // 캐릭터 컨트롤러에 내장된 이동기능
 
@@ -49,5 +61,25 @@ public class FPS_Player_Move : MonoBehaviour
             isJumping = true; // 점프 중으로 설정
             yVelocity = jumpPower; // 점프 파워를 yVelocity에 할당
         }
+    }
+
+    public void DamageAction(int damage)
+    {
+        hp -= damage; // hp 감소
+
+        hpSlider.value = (float)hp / (float)maxHp; // 슬라이더 값 업데이트
+
+        if (hp > 0)
+        {
+            StartCoroutine(PlayHitEffect());
+        }
+
+    }
+
+    IEnumerator PlayHitEffect()
+    {
+        hitEffect.SetActive(true); // 이펙트 활성화
+        yield return new WaitForSeconds(0.3f); // 0.3초 대기
+        hitEffect.SetActive(false); // 이펙트 비활성화
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : Component
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance;
     public static T Instance
@@ -33,7 +33,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
         if (instance == null)
         {
             instance = this as T;
-            DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 파괴되지 않도록 설정
+            // DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 파괴되지 않도록 설정
         }
         else
         {
