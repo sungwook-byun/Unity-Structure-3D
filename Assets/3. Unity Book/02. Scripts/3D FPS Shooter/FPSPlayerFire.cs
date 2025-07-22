@@ -3,17 +3,17 @@ using UnityEngine;
 public class FPSPlayerFire : MonoBehaviour
 {
     public GameObject firePosition;
-
     public GameObject bombFactory;
-
+    public GameObject bulletEffect;
     public float throwPower = 15f;
     public int weaponPower = 5;
 
-    public GameObject bulletEffect;
     private ParticleSystem ps;
+    private Animator anim;
 
     private void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         ps = bulletEffect.GetComponent<ParticleSystem>();
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -25,6 +25,9 @@ public class FPSPlayerFire : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽 버튼 클릭
         {
+            if (anim.GetFloat("MoveMotion") == 0)
+                anim.SetTrigger("Attack"); // 애니메이션 트리거 설정
+
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             RaycastHit hitInfo = new RaycastHit();
 

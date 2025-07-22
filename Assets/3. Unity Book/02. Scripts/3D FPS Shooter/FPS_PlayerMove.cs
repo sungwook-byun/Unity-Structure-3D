@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class FPS_PlayerMove : MonoBehaviour
 {
     private CharacterController cc;
+    private Animator anim;
 
     public float moveSpeed = 7f;
 
@@ -24,6 +25,7 @@ public class FPS_PlayerMove : MonoBehaviour
     private void Start()
     {
         cc = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
     }
 
 
@@ -36,7 +38,10 @@ public class FPS_PlayerMove : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         Vector3 dir = new Vector3(h, 0, v); // 크기와 방향만 있는 벡터
+        anim.SetFloat("MoveMotion", dir.magnitude);
+
         dir = dir.normalized; // 방향만 있는 벡터
+
 
         // 카메라의 Transform 기준으로 변환
         dir = Camera.main.transform.TransformDirection(dir);

@@ -29,9 +29,12 @@ public class FPSGameManager : Singleton<FPSGameManager>
     {
         if (player.hp <= 0)
         {
+            player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0);
+
             gameLabel.SetActive(true); 
             gameText.text = "Game Over";
             gameText.color = new Color(255, 0, 0, 255);
+
             gState = GameState.GameOver; // 게임 상태를 GameOver로 변경
         }
     }
