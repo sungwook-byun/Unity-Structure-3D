@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class Node : MonoBehaviour
+public class Node : IComparable<Node>
 {
     public Node parent;
     public Vector3 pos;
@@ -13,8 +14,8 @@ public class Node : MonoBehaviour
     public Node()
     {
         parent = null;
-        nodeTotalCost = 0f;
-        estimateCost = 0f;
+        nodeTotalCost = 0;
+        estimateCost = 0;
         isObstacle = false;
     }
 
@@ -32,6 +33,7 @@ public class Node : MonoBehaviour
         isObstacle = true;
     }
 
+    // F = G + H
     public float GetFCost()
     {
         return nodeTotalCost + estimateCost;
