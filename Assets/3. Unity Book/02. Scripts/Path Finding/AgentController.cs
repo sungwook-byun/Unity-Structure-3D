@@ -3,30 +3,28 @@ using UnityEngine.AI;
 
 public class AgentController : MonoBehaviour
 {
-    private Transform player;
     private NavMeshAgent agent;
-
     public Transform[] points;
-    public int index;
+    private int index;
 
-    private void Start()
+    void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        // player = GameObject.Find("Player").transform;
+        agent.SetDestination(points[index].position);
     }
 
     void Update()
     {
-        agent.SetDestination(points[index].position); // points[0]으로 이동
-        if (agent.remainingDistance <= 1.5f)
+        if (Vector3.Distance(transform.position, points[index].position) < 3.5f)
         {
-            Debug.Log("목적지 변경");
-            
-            int temp = index;
-            index = Random.Range(0, points.Length);
+            index++;
 
-            if (temp == index)
-                index = (index + 1) % points.Length; // 다음 인덱스로 변경
+            if (index >= points.Length)
+                index = 0;
+
+            agent.SetDestination(points[index].position);
+
+
         }
     }
 }

@@ -1,6 +1,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class EnemyFSM : MonoBehaviour
@@ -15,6 +16,7 @@ public class EnemyFSM : MonoBehaviour
     private CharacterController cc; // 캐릭터 컨트롤러
 
     private Animator anim;
+    private NavMeshAgent smith;
 
     private float currentTime = 0f; // 타이머
     private float attackDelay = 2f; // 공격 딜레이 시간
@@ -35,8 +37,8 @@ public class EnemyFSM : MonoBehaviour
         cc = GetComponent<CharacterController>();
         originPos = transform.position; // 원래 위치 저장
         originRot = transform.rotation;
-
         anim = transform.GetComponentInChildren<Animator>();
+        smith = GetComponent<NavMeshAgent>();
 
         Cursor.visible = false; // 커서 숨김
         Cursor.lockState = CursorLockMode.Locked; // 커서 잠금
@@ -87,10 +89,11 @@ public class EnemyFSM : MonoBehaviour
         }
         else if (Vector3.Distance(transform.position, player.position) > attackDistance) // 타겟이 공격 거리보다 먼 경우 -> 이동 실행
         {
-            Vector3 dir = (player.position - transform.position).normalized;
-            cc.Move(dir * moveSpeed * Time.deltaTime);
+            smith.isStopped = true;
+            smith.ResetPath(); // NavMeshAgent의 경로를 초기화
 
-            transform.forward = dir; // 캐릭터가 타겟을 바라보도록 설정
+            smith.stoppingDistance = attackDistance;
+            smith.SetDestination(player.position); // NavMeshAgent를 사용하여 타겟 위치로 이동
         }
         else // 타겟이 공격 거리보다 가까운 경우 -> 공격 전환
         {
@@ -131,12 +134,14 @@ public class EnemyFSM : MonoBehaviour
     {   
         if (Vector3.Distance(transform.position, originPos) > 0.1f) // 원래 위치로 돌아가는 중
         {
-            Vector3 dir = (originPos - transform.position).normalized;
-            cc.Move(dir * moveSpeed * Time.deltaTime);
-            transform.forward = dir; // 캐릭터가 원래 위치를 바라보도록 설정
+            smith.SetDestination(originPos); // NavMeshAgent를 사용하여 원래 위치로 이동
+            smith.stoppingDistance = 0f; // 도착 거리 설정
         }
         else // 원래 위치에 도착한 경우 -> Idle 상태로 전환
         {
+            smith.isStopped = true; // NavMeshAgent 정지
+            smith.ResetPath(); // NavMeshAgent의 경로를 초기화
+
             transform.position = originPos; // 위치를 원래 위치로 설정
             transform.rotation = originRot; // 회전을 원래 회전으로 설정
             hp = 15;
@@ -152,6 +157,8 @@ public class EnemyFSM : MonoBehaviour
             return; // 아무것도 하지 않음
 
         hp -= hitPower;
+        smith.isStopped = true; // NavMeshAgent 정지
+        smith.ResetPath(); // NavMeshAgent의 경로를 초기화
 
         if (hp > 0) // 공격을 받았는데 살았다면
         {
