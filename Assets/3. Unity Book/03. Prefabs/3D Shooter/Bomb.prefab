@@ -109,7 +109,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &110214709084781479
 Rigidbody:
@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4087925448701786829, guid: 9560cfe478da148459867aa2c651f985, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.37
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 4087925448701786829, guid: 9560cfe478da148459867aa2c651f985, type: 3}
       propertyPath: m_LocalRotation.w

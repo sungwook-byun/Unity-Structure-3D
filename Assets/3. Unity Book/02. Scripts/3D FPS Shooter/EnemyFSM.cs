@@ -40,8 +40,8 @@ public class EnemyFSM : MonoBehaviour
         anim = transform.GetComponentInChildren<Animator>();
         smith = GetComponent<NavMeshAgent>();
 
-        Cursor.visible = false; // 目辑 见辫
-        Cursor.lockState = CursorLockMode.Locked; // 目辑 泪陛
+        // Cursor.visible = false; // 目辑 见辫
+        // Cursor.lockState = CursorLockMode.Locked; // 目辑 泪陛
     }
 
     private void Update()

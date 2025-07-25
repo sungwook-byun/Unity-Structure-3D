@@ -3,11 +3,20 @@ using UnityEngine;
 public class BombAction : MonoBehaviour
 {
     public GameObject bombEffet;
+    public int attackPower = 10;
+    public float explosionRadius = 5f;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) // 수류탄이 충돌할 경우
     {
-        GameObject eff = Instantiate(bombEffet);
-        eff.transform.position = transform.position;
+        // 수류탄이 충돌한 위치에서 Ridius 범위만큼 9번 레이어(Enemy)를 가진 대상을 cols에 할당
+        Collider[] cols = Physics.OverlapSphere(transform.position, explosionRadius, 1 << 9);
+
+        for (int i = 0; i < cols.Length; i++) 
+            cols[i].GetComponent<EnemyFSM>().HitEnemy(attackPower);
+
+
+        GameObject eff = Instantiate(bombEffet); // 파티클 생성
+        eff.transform.position = transform.position; // 파티클 위치 초기화
 
         Destroy(gameObject);
     }
