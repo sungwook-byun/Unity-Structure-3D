@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 747309062}
   - component: {fileID: 747309061}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: '[RawImage] Background'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
