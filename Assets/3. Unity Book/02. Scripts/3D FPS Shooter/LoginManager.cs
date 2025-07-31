@@ -19,35 +19,35 @@ public class LoginManager : MonoBehaviour
     {
         if (!CheckInput(id.text, password.text))
             return;
-
-        if (!PlayerPrefs.HasKey(id.text)) // ÇöÀç ÀúÀåµÈ µ¥ÀÌÅÍ Áß¿¡ µ¿ÀÏÇÑ id°¡ ÀÖ´ÂÁö È®ÀÎ
+        
+        if (!PlayerPrefs.HasKey(id.text)) // í˜„ì¬ ì €ì¥ëœ ë°ì´í„° ì¤‘ì— ë™ì¼í•œ idê°€ ìˆëŠ”ì§€ í™•ì¸
         {
             PlayerPrefs.SetString(id.text, password.text);
-            notify.text = "¾ÆÀÌµğ »ı¼ºÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.";
+            notify.text = "ì•„ì´ë”” ìƒì„±ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.";
         }
-        else // ÀÔ·ÂÇÑ ID°¡ ÀÌ¹Ì Á¸Àç ÇÑ´Ù¸é
-            notify.text = "ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµğÀÔ´Ï´Ù.";
+        else // ì…ë ¥í•œ IDê°€ ì´ë¯¸ ì¡´ì¬ í•œë‹¤ë©´
+            notify.text = "ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.";
     }
 
     public void CheckUserData()
     {
         if (!CheckInput(id.text, password.text))
             return;
-
-        string pass = PlayerPrefs.GetString(id.text); // ¾ÆÀÌµğ(Key)¿¡ ÀúÀåµÈ ÆĞ½º¿öµå(Value)¸¦ °¡Á®¿À´Â ±â´É
+        
+        string pass = PlayerPrefs.GetString(id.text); // ì•„ì´ë””(Key)ì— ì €ì¥ëœ íŒ¨ìŠ¤ì›Œë“œ(Value)ë¥¼ ê°€ì ¸ì˜¤ëŠ” ê¸°ëŠ¥
 
         if (password.text == pass)
             SceneManager.LoadScene(1);
         else
-            notify.text = "ÀÔ·ÂÇÏ½Å ¾ÆÀÌµğ¿Í ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.";
+            notify.text = "ì…ë ¥í•˜ì‹  ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
     }
 
-    private bool CheckInput(string id, string pwd) // ÀÔ·ÂÀÇ À¯¹«¸¦ È®ÀÎÇÏ´Â ±â´É
+    private bool CheckInput(string id, string pwd) // ì…ë ¥ì˜ ìœ ë¬´ë¥¼ í™•ì¸í•˜ëŠ” ê¸°ëŠ¥
     {
         if (id == "" || pwd == "")
         {
-            notify.text = "¾ÆÀÌµğ ¶Ç´Â ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.";
-
+            notify.text = "ì•„ì´ë”” ë˜ëŠ” íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.";
+            
             return false;
         }
         else

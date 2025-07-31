@@ -4,7 +4,7 @@ public class Billboard : MonoBehaviour
 {
     public Transform target;
 
-    private void Update()
+    void Update()
     {
         transform.forward = Camera.main.transform.forward;
     }

@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,12 +7,13 @@ public class Bomb : MonoBehaviour
     public float bombTime = 4f;
     public float bombRange = 10f;
     public LayerMask layerMask;
-
-    private void Awake()
+    
+    void Awake()
     {
         bombRb = GetComponent<Rigidbody>();
     }
-
+    
+    // ì›í•˜ëŠ” íƒ€ì´ë°ì— í­íƒ„ íš¨ê³¼ ì‹¤í–‰
     IEnumerator Start()
     {
         yield return new WaitForSeconds(bombTime);
@@ -24,15 +23,17 @@ public class Bomb : MonoBehaviour
 
     private void BombForce()
     {
+                                                                      // ê°ì§€ ë²”ìœ„
         Collider[] colliders = Physics.OverlapSphere(transform.position, bombRange, layerMask);
 
-        foreach (Collider collider in colliders)
+        foreach (var collider in colliders)
         {
             Rigidbody rb = collider.GetComponent<Rigidbody>();
 
-            // AddExplosionForce(Æø¹ßÆÄ¿ö, Æø¹ßÀ§Ä¡, Æø¹ß¹üÀ§, Æø¹ß³ôÀÌ)
-            rb.AddExplosionForce(500f, transform.position, bombRange, 1f);
+            // AddExplosionForce(í­ë°œ íŒŒì›Œ, í­ë°œ ìœ„ì¹˜, í­ë°œ ë²”ìœ„, í­ë°œ ë†’ì´)
+            rb.AddExplosionForce(300f, transform.position, bombRange, 1f);
         }
+
         Destroy(gameObject);
     }
 }

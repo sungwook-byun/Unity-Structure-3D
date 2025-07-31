@@ -3,34 +3,30 @@ using UnityEngine;
 public class LocalData : MonoBehaviour
 {
     private int score;
-
-    private void Start()
-    {
-        
-    }
-
-    private void Update()
+    
+    void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             score++;
-
-            // ·ÎÄÃ µ¥ÀÌÅÍ ÀúÀå
+            
+            
+            // ë¡œì»¬ ë°ì´í„° ì €ì¥
             PlayerPrefs.SetInt("Score", score);
 
             int loadScore = PlayerPrefs.GetInt("Score");
-
+            
             PlayerPrefs.SetInt("Score", score);
             PlayerPrefs.SetFloat("Volume", 0.5f);
-            PlayerPrefs.SetString("UserName", "john");
-
+            PlayerPrefs.SetString("UserName", "John");
 
             PlayerPrefs.DeleteKey("Score");
             PlayerPrefs.DeleteKey("Volume");
             PlayerPrefs.DeleteKey("UserName");
-
+            
             PlayerPrefs.DeleteAll();
 
+            PlayerPrefs.Save(); // ì¢…ë£Œë  ë•Œ ìë™ ì‹¤í–‰
         }
     }
 }

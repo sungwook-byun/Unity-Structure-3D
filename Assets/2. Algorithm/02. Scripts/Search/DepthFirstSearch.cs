@@ -3,24 +3,23 @@ using UnityEngine;
 
 public class DepthFirstSearch : MonoBehaviour
 {
-
     private int[,] nodes = new int[8, 8]
     {
-        // 0 1 2 3 4 5 6 7 8
-        { 0, 1, 1, 1, 0, 0, 0, 0 }, // 0
-        { 1, 0, 0, 0, 1, 1, 0, 0 }, // 1
-        { 1, 0, 0, 0, 0, 0, 0, 0 }, // 2
-        { 1, 0, 0, 0, 0, 0, 1, 0 }, // 3
-        { 0, 1, 0, 0, 0, 1, 0, 0 }, // 4
-        { 0, 1, 0, 0, 1, 0, 0, 1 }, // 5
-        { 0, 0, 0, 1, 0, 0, 0, 0 }, // 6
-        { 0, 0, 0, 0, 0, 1, 0, 0 }, // 7
+      // 0  1  2  3  4  5  6  7
+        {0, 1, 1, 1, 0, 0, 0, 0}, // 0
+        {1, 0, 0, 0, 1, 1, 0, 0}, // 1
+        {1, 0, 0, 0, 0, 0, 0, 0}, // 2
+        {1, 0, 0, 0, 0, 0, 1, 0}, // 3
+        {0, 1, 0, 0, 0, 1, 0, 0}, // 4
+        {0, 1, 0, 0, 1, 0, 0, 1}, // 5
+        {0, 0, 0, 1, 0, 0, 0, 0}, // 6
+        {0, 0, 0, 0, 0, 1, 0, 0}, // 7
     };
-
+    
     public Stack<int> stack = new Stack<int>();
     private bool[] visited = new bool[8];
 
-    private void Start()
+    void Start()
     {
         DFSearch(0);
     }
@@ -33,19 +32,17 @@ public class DepthFirstSearch : MonoBehaviour
         {
             int index = stack.Pop();
 
-            if (!visited[index]) // ¹æ¹® Çß´ÂÁö ¿©ºÎ
+            if (!visited[index]) // ë°©ë¬¸ í–ˆëŠ”ì§€ ì•ˆí–ˆëŠ”ì§€
             {
-                visited[index] = true;
-                Debug.Log($"{index}¹ø ³ëµå¿¡ ¹æ¹®");
+                visited[index] = true; // ë°©ë¬¸ í–ˆë‹¤ê³  ì„¤ì •
+                Debug.Log($"{index}ë²ˆ ë…¸ë“œì— ë°©ë¬¸");
 
-                for( int i = nodes.GetLength(0) - 1; i >= 0; i-- )
+                for (int i = nodes.GetLength(0) - 1; i >= 0; i--)
                 {
                     if (nodes[index, i] == 1 && !visited[i])
                         stack.Push(i);
                 }
-
             }
-
         }
     }
 }

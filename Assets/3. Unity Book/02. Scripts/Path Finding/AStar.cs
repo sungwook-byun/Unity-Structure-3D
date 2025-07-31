@@ -3,23 +3,22 @@ using UnityEngine;
 
 public class AStar
 {
-    public static PriorityQueue openList; // æ’¿∏∑Œ ≈Ωªˆ«“ »ƒ∫∏
-    public static PriorityQueue closedList; // ¿ÃπÃ πÊπÆ«— ≥ÎµÂ
+    public static PriorityQueue openList; // Î∞©Î¨∏Ìï† Ïàò ÏûàÎäî ÌõÑÎ≥¥ ÎÖ∏Îìú
+    public static PriorityQueue closedList; // Ïù¥ÎØ∏ Î∞©Î¨∏Ìïú ÎÖ∏Îìú
 
-    private static float HeuristicEstimateCost(Node curNode, Node destNode)
+    private static float HeuristicEstimateCost(Node curNode, Node endNode)
     {
-        Vector3 vecCost = curNode.pos - destNode.pos;
-
-        return vecCost.magnitude;
+        Vector3 cost = curNode.pos - endNode.pos;
+        
+        return cost.magnitude;
     }
 
-    public static List<Node> FindPath(Node startNode, Node destNode)
+    public static List<Node> FindPath(Node startNode, Node endNode)
     {
         openList = new PriorityQueue();
         openList.Push(startNode);
         startNode.nodeTotalCost = 0f;
-        startNode.estimateCost = HeuristicEstimateCost(startNode, destNode);
-
+        startNode.estimateCost = HeuristicEstimateCost(startNode, endNode);
         closedList = new PriorityQueue();
         Node node = null;
 
@@ -27,7 +26,7 @@ public class AStar
         {
             node = openList.First();
 
-            if (node.pos == destNode.pos)
+            if (node.pos == endNode.pos) // Î™©Ï†ÅÏßÄÏóê ÎèÑÏ∞©
                 return CalculatePath(node);
 
             List<Node> neighbors = new List<Node>();
@@ -40,13 +39,13 @@ public class AStar
                 if (!closedList.Contains(neighborNode))
                 {
                     float cost = HeuristicEstimateCost(node, neighborNode);
-
                     float totalCost = node.nodeTotalCost + cost;
-                    float neighborNodeEstCost = HeuristicEstimateCost(neighborNode, destNode);
+
+                    float neighborNodeEstCost = HeuristicEstimateCost(neighborNode, endNode);
 
                     neighborNode.nodeTotalCost = totalCost;
                     neighborNode.parent = node;
-                    neighborNode.estimateCost = totalCost + neighborNodeEstCost;
+                    neighborNode.estimateCost = neighborNodeEstCost;
 
                     if (!openList.Contains(neighborNode))
                         openList.Push(neighborNode);
@@ -57,10 +56,10 @@ public class AStar
             openList.Remove(node);
         }
 
-        if (node.pos != destNode.pos)
+        if (node.pos != endNode.pos)
         {
-            Debug.LogError("Destination Not Found");
-
+            Debug.LogError("Destination Path Not Found");
+            
             return null;
         }
 
@@ -76,6 +75,7 @@ public class AStar
             list.Add(node);
             node = node.parent;
         }
+
         list.Reverse();
 
         return list;

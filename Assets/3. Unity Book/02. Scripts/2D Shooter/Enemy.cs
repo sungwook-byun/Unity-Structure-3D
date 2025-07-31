@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public float speed = 5;
 
     public GameObject explosionFactory;
-
+    
     void OnEnable()
     {
         int ranValue = UnityEngine.Random.Range(0, 10);
@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
         if (ranValue < 7) // 70%
         {
             GameObject target = GameObject.Find("Player");
-            dir = target.transform.position - transform.position; // «√∑π¿ÃæÓ∏¶ πŸ∂Û∫∏¥¬ πÊ«‚ ∞™
+            dir = target.transform.position - transform.position; // ÌîåÎ†àÏù¥Ïñ¥Î•º Î∞îÎùºÎ≥¥Îäî Î∞©Ìñ• Í∞í
             dir.Normalize();
         }
         else // 30%
@@ -28,30 +28,29 @@ public class Enemy : MonoBehaviour
     {
         transform.position += dir * speed * Time.deltaTime;
     }
-
+    
     private void OnCollisionEnter(Collision other)
     {
         ScoreManager.Instance.Score++;
-
-        // ∆ƒ∆º≈¨ ª˝º∫
+        
         GameObject explosion = Instantiate(explosionFactory);
         explosion.transform.position = transform.position;
 
-        if(other.gameObject.name.Contains("Bullet"))
-        { 
+        if (other.gameObject.name.Contains("Bullet"))
+        {
             // PlayerFire player = GameObject.Find("Player").GetComponent<PlayerFire>();
-            // PlayerFire.Instance.bulletObjectPool.Add(other.gameObject); // PlayerFire ΩÃ±€≈Ê¿« «Æø° √ﬂ∞°
-            PlayerFire.Instance.bulletObjectPool.Enqueue(other.gameObject); // PlayerFire ΩÃ±€≈Ê¿« ≈•ø° √ﬂ∞°
-            other.gameObject.SetActive(false); // √—æÀ ∫Ò»∞º∫»≠
+            // PlayerFire.Instance.bulletObjectPool.Add(other.gameObject);
+            PlayerFire.Instance.bulletObjectPool.Enqueue(other.gameObject);
+            
+            other.gameObject.SetActive(false);
         }
         else
-        { 
-            Destroy(other.gameObject); // «√∑π¿ÃæÓ ø¿∫Í¡ß∆Æ
+        {
+            Destroy(other.gameObject); // ÌîåÎ†àÏù¥Ïñ¥ Ïò§Î∏åÏ†ùÌä∏
         }
 
-        // EnemyManager.Instance.enemyObjectPool.Add(gameObject); // EnemyManager ΩÃ±€≈Ê¿« «Æø° √ﬂ∞°
+        // EnemyManager.Instance.enemyObjectPool.Add(gameObject);
         EnemyManager.Instance.enemyObjectPool.Enqueue(gameObject);
-        gameObject.SetActive(false); // Enemy ø¿∫Í¡ß∆Æ ∫Ò»∞º∫»≠
-
+        gameObject.SetActive(false);
     }
 }

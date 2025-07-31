@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 2433282508523890284}
   - component: {fileID: 2433282508523921356}
   - component: {fileID: 2883620193154939874}
-  - component: {fileID: 2795563610963283991}
+  - component: {fileID: -3293144764642549591}
   m_Layer: 0
   m_Name: CFXR Explosion 1
   m_TagString: Untagged
@@ -4821,7 +4821,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 79d0c47029980c04caed1c1327f99c17, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5037,7 +5036,7 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 0}
---- !u!82 &2795563610963283991
+--- !u!82 &-3293144764642549591
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5047,10 +5046,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 847b0a252711ae4428bec78fcf019ada, type: 3}
-  m_Resource: {fileID: 8300000, guid: 847b0a252711ae4428bec78fcf019ada, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a4a0f2e4ebce20f45a14bfe8cf86dbac, type: 3}
+  m_Resource: {fileID: 8300000, guid: a4a0f2e4ebce20f45a14bfe8cf86dbac, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -1,38 +1,40 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class StudyString : MonoBehaviour
 {
-    public string str1 = "Hello World**";
-
+    public string str1 = "Hello World***";
     public string[] str2 = new string[3] { "Hello", "Unity", "World" };
 
     void Start()
     {
-        Debug.Log(str1[0]); // H
-        Debug.Log(str1[2]); // l
+        // Debug.Log(str1[0]); // H
+        // Debug.Log(str1[2]); // l
+        //
+        // Debug.Log(str2[0]); // Hello
+        // Debug.Log(str2[2]); // World
+        //
+        // Debug.Log(str1.Length); // ë¬¸ìì—´ì˜ ê¸¸ì´ :
+        // Debug.Log(str1.Trim()); // ì•ë’¤ ê³µë°± ì œê±° :
+        // Debug.Log(str1.Trim('*')); // ì•ë’¤ ë¬¸ì '*' ì œê±° : 
 
-        Debug.Log(str2[0]); // Hello
-        Debug.Log(str2[2]); // World
+        // Debug.Log(str1.Contains('H')); // ëŒ€ë¬¸ì Hê°€ ìˆëŠ”ì§€
+        // Debug.Log(str1.Contains('h')); // ì†Œë¬¸ì hê°€ ìˆëŠ”ì§€
+        //
+        // Debug.Log(str1.Contains("Hello")); // Helloê°€ ìˆëŠ”ì§€
+        //
+        // Debug.Log(str1.ToUpper());; // ëŒ€ë¬¸ì ë³€í™˜
+        // Debug.Log(str1.ToLower());; // ì†Œë¬¸ì ë³€í™˜
 
-        Debug.Log(str1.Length); // ¹®ÀÚ¿­ÀÇ ±æÀÌ, ¶ç¾î¾²±âµµ Æ÷ÇÔ
-        Debug.Log(str1.Trim()); // ¸Ç¾Õ°ú ¸ÇµÚ¸¸ °ø¹éÁ¦°Å
-        Debug.Log(str1.Trim('*')); // ¹®ÀÚ ¸Ç¾Õ°ú µÚÁß¿¡ '*'°¡ ÀÖ´Ù¸é Á¦°Å
+        // str1 = str1.Replace("World", "Unity");
+        // Debug.Log(str1);
 
-        Debug.Log(str1.Contains('H')); // ´ë¹®ÀÚ H°¡ ÀÖ´ÂÁö
-        Debug.Log(str1.Contains('h')); // ¼Ò¹®ÀÚ h°¡ ÀÖ´ÂÁö
-        Debug.Log(str1.Contains("Hello")); // Hello¶ó´Â ´Ü¾î°¡ ÀÖ´ÂÁö
+        // string str = str1.Trim('*');
+        // Debug.Log(str);
 
-        Debug.Log(str1.ToUpper()); // ´ë¹®ÀÚ º¯È¯
-        Debug.Log(str1.ToLower()); // ¼Ò¹®ÀÚ º¯È¯
+        string text = "Apple,Banana,Orange,Melon,Water Melon,Mango";
+        string[] fruits = text.Split(','); // íŠ¹ì • ë¬¸ìë¡œ ìª¼ê°œê¸°
 
-        str1 = str1.Replace("World", "Unity");
-        // Debug.Log(str1.Replace("World", "Unity")); // ·Î±×¸¸ ¶ß°í ¿øº»Àº ¹Ù²îÁö ¾Ê¾Æ¼­ À§¿¡Ã³·³ °ªÀ» ´ã¾Æ¼­ ½á¾ß ¿øº»µµ ¹Ù²ñ
-
-        string text = "Apple,Banana,Orange,Melon,Watre Melon,Mango";
-
-        string[] fruits = text.Split(','); // Æ¯Á¤ ¹®ÀÚ·Î ÂÉ°³±â
-
-        foreach(var fruit in fruits)
+        foreach (var fruit in fruits)
             Debug.Log(fruit);
     }
 }

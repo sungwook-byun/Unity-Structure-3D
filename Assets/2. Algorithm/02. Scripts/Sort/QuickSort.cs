@@ -1,32 +1,30 @@
-using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuickSort : MonoBehaviour
 {
     private int[] array = { 5, 2, 1, 8, 3, 7, 6, 4 };
-
+    
     void Start()
     {
-        Debug.Log("Á¤·Ä Àü : " + string.Join(", ", array));
+        Debug.Log("ì •ë ¬ ì „ : " + string.Join(", ", array));
 
         Quick(array, 0, array.Length - 1);
-
-        Debug.Log("Á¤·Ä ÈÄ : " + string.Join(", ", array));
+        Debug.Log("ì •ë ¬ í›„ : " + string.Join(", ", array));
     }
 
     private void Quick(int[] arr, int left, int right)
     {
-
         if (left < right)
         {
             int pivot = Partition(arr, left, right);
-
+            
             Quick(arr, left, pivot - 1);
             Quick(arr, pivot + 1, right);
         }
     }
 
-    private int Partition(int[] arr, int left, int right) // ÇÇº¿À» È°¿ëÇØ¼­ ºĞÇÒ -> Á¤º¹ÇÏ´Â ±â´É
+    private int Partition(int[] arr, int left, int right) // í”¼ë´‡ì„ í™œìš©í•´ì„œ ë¶„í• 
     {
         int pivot = arr[right];
         int index = left - 1;
@@ -36,6 +34,7 @@ public class QuickSort : MonoBehaviour
             if (arr[i] < pivot)
             {
                 index++;
+
                 int temp = arr[i];
                 arr[i] = arr[index];
                 arr[index] = temp;

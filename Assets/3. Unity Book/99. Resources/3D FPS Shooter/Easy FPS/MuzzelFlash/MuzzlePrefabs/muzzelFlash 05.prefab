@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2362062}
   - component: {fileID: 10854754}
   - component: {fileID: 114752713060590030}
-  - component: {fileID: 368183096322169944}
+  - component: {fileID: -759670245865240623}
   m_Layer: 0
   m_Name: muzzelFlash 05
   m_TagString: Untagged
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDestroy: 0.05
---- !u!114 &368183096322169944
+--- !u!114 &-759670245865240623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

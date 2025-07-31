@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class BombAction : MonoBehaviour
 {
-    public GameObject bombEffet;
+    public GameObject bombEffect;
+
     public int attackPower = 10;
     public float explosionRadius = 5f;
 
-    private void OnCollisionEnter(Collision collision) // ¼ö·ùÅºÀÌ Ãæµ¹ÇÒ °æ¿ì
+    private void OnCollisionEnter(Collision collision) // ìˆ˜ë¥˜íƒ„ì´ ë¬´ì—‡ì¸ê°€ ì¶©ëŒí•  ê²½ìš°
     {
-        // ¼ö·ùÅºÀÌ Ãæµ¹ÇÑ À§Ä¡¿¡¼­ Ridius ¹üÀ§¸¸Å­ 9¹ø ·¹ÀÌ¾î(Enemy)¸¦ °¡Áø ´ë»óÀ» cols¿¡ ÇÒ´ç
+        // ìˆ˜ë¥˜íƒ„ì´ ì¶©ëŒí•œ ìœ„ì¹˜ì—ì„œ Radius ë²”ìœ„ë§Œí¼ 9ë²ˆ ë ˆì´ì–´ë¥¼ ê°€ì§„ ëŒ€ìƒì„ colsì— í• ë‹¹
         Collider[] cols = Physics.OverlapSphere(transform.position, explosionRadius, 1 << 9);
-
-        for (int i = 0; i < cols.Length; i++) 
+        
+        for (int i = 0; i < cols.Length; i++)
             cols[i].GetComponent<EnemyFSM>().HitEnemy(attackPower);
-
-
-        GameObject eff = Instantiate(bombEffet); // ÆÄÆ¼Å¬ »ı¼º
-        eff.transform.position = transform.position; // ÆÄÆ¼Å¬ À§Ä¡ ÃÊ±âÈ­
+        
+        GameObject eff = Instantiate(bombEffect); // íŒŒí‹°í´ ìƒì„±
+        eff.transform.position = transform.position; // íŒŒí‹°í´ ìœ„ì¹˜ ì´ˆê¸°í™”
 
         Destroy(gameObject);
     }

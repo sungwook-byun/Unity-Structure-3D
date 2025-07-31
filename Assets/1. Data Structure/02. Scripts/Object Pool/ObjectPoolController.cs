@@ -5,7 +5,7 @@ public class ObjectPoolController : MonoBehaviour
     public ObjectPoolQueue pool;
     public Transform shootPos;
 
-    private void Update()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {

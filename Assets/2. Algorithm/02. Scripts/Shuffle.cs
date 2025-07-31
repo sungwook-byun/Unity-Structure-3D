@@ -1,12 +1,10 @@
-using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Shuffle : MonoBehaviour
 {
     public int[] array = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    private void Start()
+    void Start()
     {
         ShuffleFunction();
     }
@@ -19,11 +17,9 @@ public class Shuffle : MonoBehaviour
             int ranInt2 = Random.Range(0, array.Length);
 
             Swap(ranInt1, ranInt2);
-
-            ShuffleFunction();
         }
     }
-
+    
     public void Swap(int i, int j)
     {
         var temp = array[i];

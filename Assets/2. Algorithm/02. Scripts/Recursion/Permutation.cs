@@ -1,11 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Permutation : MonoBehaviour
 {
     public int[] array = new int[3] { 1, 2, 3 };
 
-
-    private void Start()
+    void Start()
     {
         PermutationFunction(array, 0);
     }
@@ -20,14 +20,14 @@ public class Permutation : MonoBehaviour
 
         for (int i = start; i < arr.Length; i++)
         {
-            // Swap : ÀÚ¸®¹Ù²Ù±â
+            // Swap : ìžë¦¬ ë°”ê¾¸ê¸°
             var temp = arr[start];
             arr[start] = arr[i];
             arr[i] = temp;
 
-            PermutationFunction(arr, start + 1); // Àç±Í
-
-            // ¿ø»óº¹±¸ BackTracking
+            PermutationFunction(arr, start + 1); // ìž¬ê·€
+            
+            // ì›ìƒë³µêµ¬ BackTracking
             temp = arr[start];
             arr[start] = arr[i];
             arr[i] = temp;

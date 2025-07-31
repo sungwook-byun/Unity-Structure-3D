@@ -6,7 +6,7 @@ public class Background : MonoBehaviour
 
     public float scrollSpeed = 0.2f;
 
-    private void Update()
+    void Update()
     {
         Vector2 direction = Vector2.up;
 

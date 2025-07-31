@@ -1,3 +1,4 @@
+ï»¿using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -5,77 +6,78 @@ using UnityEngine.SceneManagement;
 
 public class FPSGameManager : Singleton<FPSGameManager>
 {
-    public enum GameState {  Ready, Run, Pause, GameOver }
+    public enum GameState { Ready, Run, Pause, GameOver }
     public GameState gState;
 
     public GameObject gameLabel;
     public GameObject gameOption;
+    
     private TextMeshProUGUI gameText;
 
-    private FPS_PlayerMove player;
+    private FPSPlayerMove player;
 
-    private void Start()
+    void Start()
     {
         gState = GameState.Ready;
         gameText = gameLabel.GetComponent<TextMeshProUGUI>();
 
         gameText.text = "Ready...";
-        gameText.color = new Color(255, 185, 0, 255);
+        gameText.color = new Color32(255, 185, 0, 255);
 
-        player = GameObject.Find("Player").GetComponent<FPS_PlayerMove>();
+        player = GameObject.Find("Player").GetComponent<FPSPlayerMove>();
 
-        StartCoroutine(ReadyToStart()); // Ready -> RunÀ¸·Î ÀüÈ¯µÇ´Â ÄÚ·çÆ¾
+        StartCoroutine(ReadyToStart()); // Ready -> Runìœ¼ë¡œ ì „í™˜ë˜ëŠ” ì½”ë£¨í‹´
     }
 
-    private void Update()
+    void Update()
     {
         if (player.hp <= 0)
         {
-            player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0);
-
-            gameLabel.SetActive(true); 
+            player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f);
+            
+            gameLabel.SetActive(true);
             gameText.text = "Game Over";
-            gameText.color = new Color(255, 0, 0, 255);
-
+            gameText.color = new Color32(255, 0, 0, 255);
+            
             Transform buttons = gameText.transform.GetChild(0);
-            buttons.gameObject.SetActive(true); // ¹öÆ° È°¼ºÈ­
-
-            gState = GameState.GameOver; // °ÔÀÓ »óÅÂ¸¦ GameOver·Î º¯°æ
+            buttons.gameObject.SetActive(true);
+            
+            gState = GameState.GameOver;
         }
     }
 
     IEnumerator ReadyToStart()
     {
-        yield return new WaitForSeconds(2f);
-        gameText.text = "Go!"; // ÅØ½ºÆ® º¯°æ
+        yield return new WaitForSeconds(2f); // 2ì´ˆ ëŒ€ê¸°
+        gameText.text = "Go!"; // í…ìŠ¤íŠ¸ ë³€ê²½
 
         yield return new WaitForSeconds(0.5f);
-        gameLabel.SetActive(false); // °ÔÀÓ ÀüÈ¯À» ¾Ë·ÁÁÖ´Â ÅØ½ºÆ® Á¾·á
-        gState = GameState.Run;
+        gameLabel.SetActive(false);
+        gState = GameState.Run; // ìƒíƒœ ì „í™˜
     }
 
     public void OpenOptionWindow()
     {
-        gameOption.SetActive(true); // ¿É¼Ç Ã¢ È°¼ºÈ­
-        Time.timeScale = 0f; // ½ÇÇà Èå¸§ÀÌ ¸ØÃß±â´Â ÇÏ´Âµ¥, UI´Â µ¿ÀÛ °¡´É
-        gState = GameState.Pause; // °ÔÀÓ »óÅÂ¸¦ Pause·Î º¯°æ
+        gameOption.SetActive(true);
+        Time.timeScale = 0f; // ì‹¤í–‰ íë¦„ì´ ë©ˆì¶”ê¸°ëŠ” í•˜ëŠ”ë°, UI ë™ì‘ ê°€ëŠ¥, Scene Loadì™€ ì—°ê´€ X
+        gState = GameState.Pause;
     }
 
     public void CloseOptionWindow()
     {
-        gameOption.SetActive(false); // ¿É¼Ç Ã¢ ºñÈ°¼ºÈ­
-        Time.timeScale = 1f; // ½ÇÇà Èå¸§ÀÌ ´Ù½Ã ½ÃÀÛ
-        gState = GameState.Run; // °ÔÀÓ »óÅÂ¸¦ RunÀ¸·Î º¯°æ
+        gameOption.SetActive(false);
+        Time.timeScale = 1f;
+        gState = GameState.Run;
     }
 
     public void RestartGame()
     {
-        Time.timeScale = 1f; // ½ÇÇà Èå¸§ÀÌ ´Ù½Ã ½ÃÀÛ
-        SceneManager.LoadScene(1); // ÇöÀç ¾ÀÀ» ´Ù½Ã ·ÎµåÇÏ¿© °ÔÀÓ Àç½ÃÀÛ
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
     {
-        Application.Quit(); // °ÔÀÓ Á¾·á
+        Application.Quit();
     }
 }

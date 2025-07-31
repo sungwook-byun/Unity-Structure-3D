@@ -592,32 +592,32 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanPelvis
       parentName: Zombie1_1(Clone)
-      position: {x: 0.0000004273747, y: 8.798529, z: -0.50017124}
+      position: {x: 0.00000042737472, y: 8.798529, z: -0.50017124}
       rotation: {x: 0.49912703, y: -0.50087154, z: -0.49912694, w: 0.5008715}
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanLLegThigh
       parentName: Base HumanPelvis
-      position: {x: -0.16426772, y: 0.44787383, z: 0.8392096}
+      position: {x: -0.16426772, y: 0.44787383, z: 0.8392097}
       rotation: {x: 0.0077962466, y: 0.9974131, z: -0.007370199, w: 0.0710776}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: Base HumanLLegCalf
       parentName: Base HumanLLegThigh
-      position: {x: -3.9293935, y: -0.000016987324, z: 0.0000040054324}
+      position: {x: -3.9293935, y: -0.000016987324, z: 0.000004005433}
       rotation: {x: -0.016705867, y: 0.0021016079, z: 0.104906425, w: 0.9943396}
       scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: Base HumanLLegFoot
       parentName: Base HumanLLegCalf
-      position: {x: -4.3700285, y: 0, z: 0}
+      position: {x: -4.370029, y: 0, z: 0}
       rotation: {x: -0.10874623, y: 0.015126654, z: -0.6966549, w: 0.7089551}
       scale: {x: 0.9999997, y: 0.9999999, z: 0.9999999}
     - name: Base HumanLLegDigit11
       parentName: Base HumanLLegFoot
-      position: {x: -1.7728779, y: -0.3313413, z: 0.052519802}
+      position: {x: -1.7728779, y: -0.3313413, z: 0.052519806}
       rotation: {x: -0.004218133, y: -0.03993994, z: -0.111796334, w: 0.99291927}
       scale: {x: 0.9999999, y: 0.99999994, z: 1}
     - name: Base HumanRThigh
       parentName: Base HumanPelvis
-      position: {x: -0.16426772, y: 0.4478739, z: -0.8392096}
+      position: {x: -0.16426772, y: 0.4478739, z: -0.8392097}
       rotation: {x: 0.007863666, y: 0.99740684, z: 0.0073751262, w: -0.0711576}
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanRCalf
@@ -632,12 +632,12 @@ ModelImporter:
       scale: {x: 0.9999997, y: 0.9999999, z: 0.9999999}
     - name: Base HumanRDigit11
       parentName: Base HumanRFoot
-      position: {x: -1.7728786, y: -0.33134133, z: -0.052519992}
+      position: {x: -1.7728786, y: -0.33134133, z: -0.05251999}
       rotation: {x: 0.0041982457, y: 0.040124144, z: -0.11181844, w: 0.9929094}
       scale: {x: 0.99999994, y: 1, z: 0.9999999}
     - name: Base HumanSpine1
       parentName: Base HumanPelvis
-      position: {x: -0.43604356, y: -0.03336191, z: -0.00000008279867}
+      position: {x: -0.43604356, y: -0.03336191, z: -0.00000008279868}
       rotation: {x: 0.000000015619483, y: -0.000000054541328, z: -0.11446538, w: 0.9934272}
       scale: {x: 1.0000005, y: 1.0000005, z: 1}
     - name: Base HumanSpine2
@@ -652,7 +652,7 @@ ModelImporter:
       scale: {x: 0.9999996, y: 0.9999996, z: 1}
     - name: Base HumanNeck
       parentName: Base HumanRibcage
-      position: {x: -0.007575989, y: -0.03336191, z: -0.00000006406999}
+      position: {x: -0.0075759892, y: -0.03336191, z: -0.00000006406999}
       rotation: {x: 1.6554034e-14, y: -0.000000030988744, z: -0.2052295, w: 0.97871387}
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanHead
@@ -672,12 +672,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanHeadREye
       parentName: Base HumanHead
-      position: {x: -0.48573306, y: 1.0121529, z: -0.33374307}
+      position: {x: -0.4857331, y: 1.0121529, z: -0.33374307}
       rotation: {x: 2.1622138e-21, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanLEye
       parentName: Base HumanHead
-      position: {x: -0.48573306, y: 1.0121529, z: 0.33374304}
+      position: {x: -0.4857331, y: 1.0121529, z: 0.33374307}
       rotation: {x: 2.1622138e-21, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanHeadJaw
@@ -687,7 +687,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanLArmCollarbone
       parentName: Base HumanRibcage
-      position: {x: 0.231958, y: 0.19336931, z: 0.5392591}
+      position: {x: 0.23195802, y: 0.19336933, z: 0.5392591}
       rotation: {x: 0.012362217, y: 0.7537789, z: 0.18247475, w: 0.63116366}
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanLArmUpperarm
@@ -732,17 +732,17 @@ ModelImporter:
       scale: {x: 1.0000032, y: 0.99999815, z: 0.9999989}
     - name: Base HumanLArmDigit31
       parentName: Base HumanLArmPalm
-      position: {x: -1.3412142, y: 0.0000030517579, z: 0.15468101}
+      position: {x: -1.3412143, y: 0.0000030517579, z: 0.15468101}
       rotation: {x: 0.005597201, y: 0.03249706, z: -0.07460033, w: 0.9966682}
       scale: {x: 1.0000013, y: 0.9999988, z: 1}
     - name: Base HumanLArmDigit32
       parentName: Base HumanLArmDigit31
-      position: {x: -0.4323067, y: 0.00000076293946, z: 0.00000076293946}
+      position: {x: -0.43230674, y: 0.00000076293946, z: 0.00000076293946}
       rotation: {x: -0.0000006831247, y: 0.0000010319048, z: 0.021232728, w: 0.9997746}
       scale: {x: 0.999998, y: 1.0000021, z: 1}
     - name: Base HumanLArmDigit33
       parentName: Base HumanLArmDigit32
-      position: {x: -0.19190903, y: 0.00000076293946, z: 0}
+      position: {x: -0.19190904, y: 0.00000076293946, z: 0}
       rotation: {x: 0.00000091351603, y: 0.0000003078176, z: 0.15353261, w: 0.9881436}
       scale: {x: 0.99999565, y: 1.0000043, z: 1}
     - name: Base HumanLArmDigit41
@@ -752,7 +752,7 @@ ModelImporter:
       scale: {x: 1.0000012, y: 0.999998, z: 1.000001}
     - name: Base HumanLArmDigit42
       parentName: Base HumanLArmDigit41
-      position: {x: -0.35081634, y: 0.00000076293946, z: 0.00000076293946}
+      position: {x: -0.35081637, y: 0.00000076293946, z: 0.00000076293946}
       rotation: {x: 0.0018966072, y: 0.00033708828, z: 0.023885842, w: 0.99971294}
       scale: {x: 0.9999982, y: 1.000001, z: 1.0000008}
     - name: Base HumanLArmDigit43
@@ -762,7 +762,7 @@ ModelImporter:
       scale: {x: 1.0000013, y: 0.99999803, z: 1.000001}
     - name: Base HumanLArmDigit51
       parentName: Base HumanLArmPalm
-      position: {x: -1.3316517, y: 0.000004577637, z: -0.4197525}
+      position: {x: -1.3316518, y: 0.000004577637, z: -0.41975254}
       rotation: {x: -0.008523221, y: -0.01461869, z: 0.007961436, w: 0.9998251}
       scale: {x: 0.999998, y: 1.0000005, z: 1.0000017}
     - name: Base HumanLArmDigit52
@@ -777,7 +777,7 @@ ModelImporter:
       scale: {x: 0.99999726, y: 1.0000014, z: 1.0000015}
     - name: Base HumanRArmCollarbone
       parentName: Base HumanRibcage
-      position: {x: 0.231958, y: 0.19336931, z: -0.5392592}
+      position: {x: 0.23195802, y: 0.19336933, z: -0.5392592}
       rotation: {x: -0.012360754, y: -0.7537783, z: 0.18247512, w: 0.63116425}
       scale: {x: 1, y: 1, z: 1}
     - name: Base HumanRArmUpperarm
@@ -787,7 +787,7 @@ ModelImporter:
       scale: {x: 1.0000002, y: 1, z: 0.9999996}
     - name: Base HumanRArmForearm
       parentName: Base HumanRArmUpperarm
-      position: {x: -2.6574125, y: 0.00000038146973, z: -0.00000076293946}
+      position: {x: -2.6574128, y: 0.00000038146973, z: -0.00000076293946}
       rotation: {x: 0.0035303677, y: 0.033325966, z: -0.0291586, w: 0.99901295}
       scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
     - name: Base HumanRArmPalm
@@ -802,7 +802,7 @@ ModelImporter:
       scale: {x: 0.9999985, y: 0.9999991, z: 1.0000021}
     - name: Base HumanRArmDigit12
       parentName: Base HumanRArmDigit11
-      position: {x: -0.61692315, y: -0.0000015258789, z: -0.00000076293946}
+      position: {x: -0.6169232, y: -0.0000015258789, z: -0.00000076293946}
       rotation: {x: 0.016612839, y: 0.24742879, z: -0.005349223, w: 0.9687489}
       scale: {x: 0.9999984, y: 0.9999989, z: 1.0000025}
     - name: Base HumanRArmDigit21
@@ -822,7 +822,7 @@ ModelImporter:
       scale: {x: 0.9999965, y: 1.0000023, z: 1.0000012}
     - name: Base HumanRArmDigit31
       parentName: Base HumanRArmPalm
-      position: {x: -1.3412124, y: -0.0000015258789, z: -0.1546753}
+      position: {x: -1.3412124, y: -0.0000015258789, z: -0.15467532}
       rotation: {x: -0.005598006, y: -0.032496877, z: -0.07460053, w: 0.99666816}
       scale: {x: 0.999999, y: 1.000001, z: 0.99999994}
     - name: Base HumanRArmDigit32
@@ -832,17 +832,17 @@ ModelImporter:
       scale: {x: 1.0000014, y: 0.99999833, z: 0.99999994}
     - name: Base HumanRArmDigit33
       parentName: Base HumanRArmDigit32
-      position: {x: -0.19190903, y: -0.00000076293946, z: 0.00000038146973}
+      position: {x: -0.19190904, y: -0.00000076293946, z: 0.00000038146973}
       rotation: {x: 0.0000010786913, y: 0.00000084620007, z: 0.15353519, w: 0.9881432}
       scale: {x: 1.0000037, y: 0.9999961, z: 0.9999999}
     - name: Base HumanRArmDigit41
       parentName: Base HumanRArmPalm
-      position: {x: -1.3421905, y: -0.0000030517579, z: 0.15077668}
+      position: {x: -1.3421906, y: -0.0000030517579, z: 0.1507767}
       rotation: {x: -0.043404892, y: -0.015976002, z: -0.06044829, w: 0.9970992}
       scale: {x: 0.9999992, y: 1.0000018, z: 0.9999988}
     - name: Base HumanRArmDigit42
       parentName: Base HumanRArmDigit41
-      position: {x: -0.35081634, y: -0.00000076293946, z: 0.00000076293946}
+      position: {x: -0.35081637, y: -0.00000076293946, z: 0.00000076293946}
       rotation: {x: -0.0019036671, y: -0.00034005922, z: 0.023889262, w: 0.99971277}
       scale: {x: 1.0000018, y: 0.99999934, z: 0.99999887}
     - name: Base HumanRArmDigit43
@@ -852,7 +852,7 @@ ModelImporter:
       scale: {x: 0.9999987, y: 1.0000025, z: 0.9999989}
     - name: Base HumanRArmDigit51
       parentName: Base HumanRArmPalm
-      position: {x: -1.3316536, y: -0.0000015258789, z: 0.41975862}
+      position: {x: -1.3316536, y: -0.0000015258789, z: 0.41975865}
       rotation: {x: 0.008522148, y: 0.014620046, z: 0.007963452, w: 0.99982506}
       scale: {x: 1.0000021, y: 0.99999976, z: 0.9999981}
     - name: Base HumanRArmDigit52
@@ -862,7 +862,7 @@ ModelImporter:
       scale: {x: 1.000003, y: 0.9999989, z: 0.99999815}
     - name: Base HumanRArmDigit53
       parentName: Base HumanRArmDigit52
-      position: {x: -0.20229873, y: -0.0000015258789, z: 0}
+      position: {x: -0.20229875, y: -0.0000015258789, z: 0}
       rotation: {x: 0.0030292047, y: 0.012582273, z: 0.22767113, w: 0.97365206}
       scale: {x: 1.0000027, y: 0.9999991, z: 0.99999815}
     armTwist: 0.5

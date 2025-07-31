@@ -1,21 +1,21 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class BinarySearch : MonoBehaviour
 {
-    private int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; // Á¤·ÄµÈ µ¥ÀÌÅÍ¸¸ Å½»ö °¡´É
+    private int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; // ì •ë ¬ëœ ë°ì´í„°ë§Œ íƒìƒ‰ ê°€ëŠ¥
     private int target = 7;
 
     void Start()
     {
-        int result = BSearch(); // TargetÀÇ ÀÎµ¦½º °ª
-        Debug.Log($"{target}Àº {result}¹øÂ°¿¡ ÀÖ½À´Ï´Ù.");
+        int result = BSearch();
+        Debug.Log($"{target}ì€ {result}ë²ˆì§¸ì— ìˆìŠµë‹ˆë‹¤.");
     }
 
     private int BSearch()
     {
-        int left = 0; // Ã³À½ Left
-        int right = array.Length - 1; // Ã³À½ Right
-
+        int left = 0; // ì²˜ìŒ Left
+        int right = array.Length - 1; // ì²˜ìŒ Right
+        
         while (left <= right)
         {
             int mid = (left + right) / 2;

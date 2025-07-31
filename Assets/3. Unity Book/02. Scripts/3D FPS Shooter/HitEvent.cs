@@ -7,5 +7,5 @@ public class HitEvent : MonoBehaviour
     public void PlayerHit()
     {
         efsm.AttackAction();
-    }    
+    }
 }

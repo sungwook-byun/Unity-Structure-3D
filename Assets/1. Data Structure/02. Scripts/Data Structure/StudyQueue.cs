@@ -1,26 +1,26 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class StudyQueue : MonoBehaviour
 {
     public Queue<int> queue = new Queue<int>();
 
-    private void Start()
+    void Start()
     {
-        for(int i = 1; i <= 10; i++)
+        for (int i = 1; i <= 10; i++)
         {
-            queue.Enqueue(i); // 1 ~ 10±îÁö Ãß°¡
+            queue.Enqueue(i); // 1 ~ 10ê¹Œì§€ ì¶”ê°€
         }
-
-        int output = queue.Dequeue(); // °ªÀ» »ÌÀ½
+        
+        int output = queue.Dequeue(); // ê°’ì„ ë½‘ìŒ
         Debug.Log(output);
 
-        Debug.Log(queue.Peek()); // ±× ´ÙÀ½¿¡ »ÌÀ» °ªÀ» È®ÀÎ
-
-        Debug.Log(queue.Contains(5)); // °ª 5°¡ Æ÷ÇÔµÇ¾î ÀÖ´ÂÁö¸¦ È®ÀÎ
+        Debug.Log(queue.Peek()); // ê·¸ ë‹¤ìŒì— ë½‘ì„ ê°’ì„ í™•ì¸
         
-        queue.Clear(); // ¸ğµç °ª »èÁ¦
+        Debug.Log(queue.Contains(5)); // ê°’ 5ê°€ í¬í•¨ë˜ì–´ìˆëŠ”ì§€ í™•ì¸ -> true / false
+        
+        queue.Clear(); // ëª¨ë“  ê°’ ì‚­ì œ
 
-        Debug.Log(queue.Count); // °³¼ö È®ÀÎ
+        Debug.Log(queue.Count); // ê°œìˆ˜ í™•ì¸
     }
 }

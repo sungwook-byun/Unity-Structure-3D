@@ -1,41 +1,34 @@
-using NUnit.Framework;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DynamicArray : MonoBehaviour
 {
     public List<int> list1 = new List<int>();
-
-    private void Start()
+    
+    void Start()
     {
-        for(int i = 1; i <= 10; i++)
-        {
-            list1.Add(i);
-        }
+       for (int i = 1; i <= 10; i++) // 1 ~ 10ê¹Œì§€ ê°’ì„ list1ì— ì¶”ê°€
+           list1.Add(i); // ë’¤ì— ië¥¼ ì¶”ê°€
+       
+       // list1.Insert(5, 100); // ì¸ë±ìŠ¤ 5ë²ˆì— 100ì„ ì‚½ìž…
+       // list1.Remove(5); // ê°’ 5ë¥¼ ì œê±°
+       // list1.RemoveAt(5); // ì¸ë±ìŠ¤ 5ë²ˆì— ìžˆëŠ” ê°’ì„ ì œê±°
+       // list1.RemoveRange(1, 3); // ì¸ë±ìŠ¤ 1ë²ˆì—ì„œ 3ê°œê¹Œì§€ ì œê±°
+       // list1.Clear(); // ë°ì´í„° ëª¨ë‘ ì œê±°
+       // list1.RemoveAll(x => x > 5); // í˜„ìž¬ List ì•ˆì—ì„œ x > 5 ê°’ì€ ëª¨ë‘ ì œê±°
+       // list1.Sort(); // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
+       // string str = String.Empty; // ""
+       // foreach (var x in list1)
+       // {
+       //     str += x.ToString() + " / ";
+       // }
+       //
+       // Debug.Log(str);
 
-        list1.Insert(5, 100); // 6¹øÂ°¿¡ 100À» »ðÀÔ
-
-        list1.Remove(3); // °ªÀÌ 3ÀÎ Ã¹ ¹øÂ° ¿ä¼Ò¸¦ Á¦°Å
-
-        list1.RemoveAt(5); // ÀÎµ¦½º 5¹ø¿¡ ÀÖ´Â °ªÀ» Á¦°Å
-
-        list1.RemoveRange(1, 3); // ÀÎµ¦½º 1ºÎÅÍ 3°³ ¿ä¼Ò¸¦ Á¦°Å
-
-        list1.Clear(); // ¸ðµç ¿ä¼Ò Á¦°Å
-
-        list1.RemoveAll(i => i > 5 && i < 9); // 5º¸´Ù Å©°í 9º¸´Ù ÀÛÀº ¸ðµç ¿ä¼Ò Á¦°Å
-
-        list1.Sort(); // ¿À¸§Â÷¼ø Á¤·Ä
-
-        list1.Reverse(); // ³»¸²Â÷¼ø Á¤·Ä
-
-        string str = string.Empty;
-        foreach(var x in list1)
-        {
-            str += x.ToString() + ", ";
-        }
-
-        Debug.Log(str);
+       if (list1.Contains(10)) // Listì—ì„œ 10ì´ë¼ëŠ” ê°’ì´ ìžˆìœ¼ë©´ true
+           Debug.Log("ê°’ 10ì´ ì¡´ìž¬ O");
+       else
+           Debug.Log("ê°’ 10ì´ ì¡´ìž¬ X");
     }
-
 }

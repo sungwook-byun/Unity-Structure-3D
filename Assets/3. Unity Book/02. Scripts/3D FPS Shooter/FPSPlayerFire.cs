@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FPSPlayerFire : MonoBehaviour
 {
-    #region ¸â¹ö º¯¼ö
+    #region ë©¤ë²„ ë³€ìˆ˜
     private enum WeaponMode { Normal, Sniper }
     private WeaponMode wMode;
 
@@ -23,7 +23,7 @@ public class FPSPlayerFire : MonoBehaviour
 
     public GameObject weapon01_R;
     public GameObject weapon02_R;
-
+    
     public TextMeshProUGUI wModeText;
     public GameObject[] eff_Flash;
 
@@ -46,26 +46,25 @@ public class FPSPlayerFire : MonoBehaviour
         if (FPSGameManager.Instance.gState != FPSGameManager.GameState.Run)
             return;
 
-        #region ¸¶¿ì½º ¿ŞÂÊ Å¬¸¯ -> ÃÑ ¹ß»ç
-
-        if (Input.GetMouseButtonDown(0)) // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ° Å¬¸¯
+        #region ë§ˆìš°ìŠ¤ ì™¼ìª½ í´ë¦­ -> ì´ ë°œì‚¬
+        if (Input.GetMouseButtonDown(0)) // ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ í´ë¦­
         {
             if (anim.GetFloat("MoveMotion") == 0)
                 anim.SetTrigger("Attack");
 
             StartCoroutine(ShootEffectOn(0.05f));
-
+            
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            RaycastHit hitInfo = new RaycastHit();
+            RaycastHit hitInfo =  new RaycastHit();
 
             if (Physics.Raycast(ray, out hitInfo))
             {
-                if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Enemy")) // Raycast¸¦ Enemy°¡ ¸ÂÀº °æ¿ì
+                if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Enemy")) // Raycastë¥¼ Enemyê°€ ë§ì€ ê²½ìš°
                 {
                     EnemyFSM eFSM = hitInfo.transform.GetComponent<EnemyFSM>();
                     eFSM.HitEnemy(weaponPower);
                 }
-                else // Raycast¸¦ ¸ÂÀº ´ë»óÀÌ Enemy°¡ ¾Æ´Ñ °æ¿ì
+                else // Raycastë¥¼ ë§ì€ ëŒ€ìƒì´ Enemyê°€ ì•„ë‹Œ ê²½ìš°
                 {
                     bulletEffect.transform.position = hitInfo.point;
                     bulletEffect.transform.forward = hitInfo.normal;
@@ -74,78 +73,72 @@ public class FPSPlayerFire : MonoBehaviour
                 }
             }
         }
-
         #endregion
 
-
-        #region ¸¶¿ì½º ¿À¸¥ÂÊ Å¬¸¯ -> ÀÏ¹İ¸ğµå-¼ö·ùÅº / Àú°İ¸ğµå-Á¶ÁØ°æ
-        if (Input.GetMouseButtonDown(1)) // ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ° Å¬¸¯
+        #region ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ í´ë¦­ -> ì¼ë°˜ëª¨ë“œ - ìˆ˜ë¥˜íƒ„ / ì €ê²©ëª¨ë“œ - ì¡°ì¤€ê²½
+        if (Input.GetMouseButtonDown(1)) // ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ í´ë¦­
         {
             switch (wMode)
             {
-                case WeaponMode.Normal: // ÀÏ¹İ ¸ğµåÀÏ ¶§ ¸¶¿ì½º ¿À¸¥ÂÊ -> ¼ö·ùÅº ÅõÃ´
+                case WeaponMode.Normal: // ì¼ë°˜ ëª¨ë“œì¼ ë•Œ ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ -> ìˆ˜ë¥˜íƒ„ íˆ¬ì²™
                     GameObject bomb = Instantiate(bombFactory);
                     bomb.transform.position = firePosition.transform.position;
 
                     Rigidbody rb = bomb.GetComponent<Rigidbody>();
-                    rb.AddForce((Camera.main.transform.forward + Camera.main.transform.up * 0.5f) * throwPower, ForceMode.Impulse);
+                    rb.AddForce((Camera.main.transform.forward + Camera.main.transform.up * 0.5f)
+                                * throwPower, ForceMode.Impulse);
                     break;
-                case WeaponMode.Sniper: // Àú°İ ¸ğµåÀÏ ¶§ ¸¶¿ì½º ¿À¸¥ÂÊ -> È®´ë/Ãà¼Ò Á¶ÁØ°æ
-                    ZoomMode = !ZoomMode; // ÇöÀç ÁÜ ¸ğµå »óÅÂ º¯°æ
-
+                case WeaponMode.Sniper: // ì €ê²© ëª¨ë“œì¼ ë•Œ ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ -> í™•ëŒ€/ì¶•ì†Œ ì¡°ì¤€ê²½
+                    ZoomMode = !ZoomMode; // í˜„ì¬ ì¤Œ ëª¨ë“œ ìƒíƒœ ë³€ê²½
+                    
                     float fov = ZoomMode ? 15f : 60f;
                     Camera.main.fieldOfView = fov;
-
+                    
                     crosshair02_zoom.SetActive(ZoomMode);
                     crosshair02.SetActive(!ZoomMode);
-
                     break;
             }
         }
         #endregion
 
-
-        #region ¹«±âº¯°æ
+        #region  ë¬´ê¸° ë³€ê²½
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             wMode = WeaponMode.Normal;
             Camera.main.fieldOfView = 60f;
-
             wModeText.text = "Normal Mode";
 
             weapon01.SetActive(true);
             weapon02.SetActive(false);
-
-            weapon01_R.SetActive(true);
-            weapon02_R.SetActive(false);
-
             crosshair01.SetActive(true);
             crosshair02.SetActive(false);
-
             crosshair02_zoom.SetActive(false);
-
+            weapon01_R.SetActive(true);
+            weapon02_R.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             wMode = WeaponMode.Sniper;
-
             wModeText.text = "Sniper Mode";
-
+            
             weapon01.SetActive(false);
             weapon02.SetActive(true);
-
-            weapon01_R.SetActive(false);
-            weapon02_R.SetActive(true);
-
             crosshair01.SetActive(false);
             crosshair02.SetActive(true);
+            weapon01_R.SetActive(false);
+            weapon02_R.SetActive(true);
         }
         #endregion
     }
 
+    /// <summary>
+    /// ì´êµ¬ í™”ì—¼ ì´í™íŠ¸
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     IEnumerator ShootEffectOn(float duration)
     {
-        int num = Random.Range(0, eff_Flash.Length - 1);
+        int num = Random.Range(0, eff_Flash.Length);
         eff_Flash[num].SetActive(true);
 
         yield return new WaitForSeconds(duration);

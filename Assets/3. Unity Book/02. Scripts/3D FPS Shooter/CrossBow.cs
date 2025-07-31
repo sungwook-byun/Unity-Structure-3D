@@ -1,46 +1,41 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class CrossBow : MonoBehaviour
 {
-    // »≠ªÏ¿ª πﬂªÁ«œ¥¬ ±‚¥…
-    // »≠ªÏ
-    // πﬂªÁ«“ ¿ßƒ°
-    // »≠ªÏ¿Ã ≥Øæ∆∞°¥¬ ±‚¥… -> Arrow Ω∫≈©∏≥∆Æ∑Œ ¿€º∫
-
-    public GameObject arrowPrefab; // »≠ªÏ «¡∏Æ∆’
-    public Transform shootPos; // »≠ªÏ¿Ã πﬂªÁµ… ¿ßƒ°
+    public GameObject arrowPrefab;
+    public Transform shootPos;
     public bool isShoot;
-
-
-    private void Update()
+    
+    void Update()
     {
         Ray ray = new Ray(shootPos.position, shootPos.forward);
-        RaycastHit hit; // ∑π¿Ã¿˙ ¥Í¿∫ ¥ÎªÛ
+        RaycastHit hit; // Î†àÏù¥Ï†Ä ÎãøÏùÄ ÎåÄÏÉÅ
 
         bool isTargeting = Physics.Raycast(ray, out hit);
 
-        Debug.DrawRay(shootPos.position, shootPos.forward, Color.green); // ∑π¿Ã¿˙ Ω√∞¢»≠
+        Debug.DrawRay(shootPos.position, shootPos.forward * 100f, Color.green);
 
         if (isTargeting && !isShoot)
-            StartCoroutine(ShootRoutine()); // ∑π¿Ã¿˙∞° ¥Í¿∏∏È ShootRoutine ƒ⁄∑Á∆æ Ω««‡ 
+            StartCoroutine(ShootRoutine());
     }
 
     IEnumerator ShootRoutine()
     {
         isShoot = true;
-
+        
         GameObject arrow = Instantiate(arrowPrefab, transform);
-        Quaternion rot = Quaternion.Euler(new Vector3(90, 0, 0)); // »≠ªÏ¿« »∏¿¸ º≥¡§  
-        arrow.transform.SetPositionAndRotation(shootPos.position, rot); // »≠ªÏ¿Ã πﬂªÁµ… ¿ßƒ°øÕ »∏¿¸ º≥¡§
-
-        yield return new WaitForSeconds(3f); // 3√  ¥Î±‚
+        Quaternion rot = Quaternion.Euler(new Vector3(90, 0, 0));
+        arrow.transform.SetPositionAndRotation(shootPos.position, rot);
+        
+        yield return new WaitForSeconds(3f);
         isShoot = false;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(shootPos.position, shootPos.forward * 100f); // »≠ªÏ¿Ã πﬂªÁµ… ¿ßƒ°ø°º≠ ∑π¿Ã¿˙ Ω√∞¢»≠
+        Gizmos.DrawRay(shootPos.position, shootPos.forward * 100f);
     }
 }

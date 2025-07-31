@@ -3,7 +3,6 @@ using UnityEngine.EventSystems;
 
 public class UIHandler : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
-    // RectTransform = UIÀü¿ë transformÀÓ.
     private RectTransform parentRect;
 
     private Vector2 basePos;
@@ -14,18 +13,18 @@ public class UIHandler : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         parentRect = transform.parent.GetComponent<RectTransform>();
     }
-
+    
     public void OnPointerDown(PointerEventData eventData)
     {
-        parentRect.SetAsLastSibling(); // À§¿¡ ±×·ÁÁöµµ·Ï ¼³Á¤
+        parentRect.SetAsLastSibling(); // ìœ„ì— ê·¸ë ¤ì§€ë„ë¡ ì„¤ì •
 
-        basePos = parentRect.anchoredPosition; // ±âÁ¸ UIÀÇ À§Ä¡
-        startPos = eventData.position; // ½ÃÀÛÁ¡
+        basePos = parentRect.anchoredPosition; // ê¸°ì¡´ UIì˜ ìœ„ì¹˜
+        startPos = eventData.position; // ì‹œì‘ì 
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        moveOffset = eventData.position - startPos; // µå·¡±×ÇÑ »óÅÂÀÇ Dir
+        moveOffset = eventData.position - startPos; // ë“œë˜ê·¸í•œ ìƒíƒœì˜ Dir
         parentRect.anchoredPosition = basePos + moveOffset;
     }
 }

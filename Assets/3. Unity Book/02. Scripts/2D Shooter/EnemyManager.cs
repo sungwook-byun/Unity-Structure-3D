@@ -5,35 +5,35 @@ public class EnemyManager : Singleton<EnemyManager>
 {
     public int poolSize = 10;
 
-    // public GameObject[] enemyObjectPool; // πËø≠
-    // public List<GameObject> enemyObjectPool; // ∏ÆΩ∫∆Æ
-    public Queue<GameObject> enemyObjectPool; // ≈•
-
+    // public GameObject[] enemyObjectPool; // Î∞∞Ïó¥
+    // public List<GameObject> enemyObjectPool; // Î¶¨Ïä§Ìä∏
+    public Queue<GameObject> enemyObjectPool; // ÌÅê
+    
     public Transform[] spawnPoints;
-
+    
     public GameObject enemyFactory;
-
-    private float currentTime; // ≈∏¿Ã∏”
+    
+    private float currentTime; // ÌÉÄÏù¥Î®∏
     private float minTime = 1;
     private float maxTime = 5;
-    public float createTime = 1f; // ª˝º∫ ¡÷±‚
-
+    public float createTime = 1f; // ÏÉùÏÑ± Ï£ºÍ∏∞
+    
     void Start()
     {
         createTime = Random.Range(minTime, maxTime);
-
-        // enemyObjectPool =  new GameObject[poolSize]; // πËø≠
-        // enemyObjectPool = new List<GameObject>(); // ∏ÆΩ∫∆Æ
-        enemyObjectPool = new Queue<GameObject>(); // ≈•
-
+        
+        // enemyObjectPool =  new GameObject[poolSize]; // Î∞∞Ïó¥
+        // enemyObjectPool = new List<GameObject>(); // Î¶¨Ïä§Ìä∏
+        enemyObjectPool = new Queue<GameObject>(); // ÌÅê
+        
         for (int i = 0; i < poolSize; i++)
         {
             GameObject enemy = Instantiate(enemyFactory);
 
-            // enemyObjectPool[i] = enemy; // πËø≠
-            // enemyObjectPool.Add(enemy); // ∏ÆΩ∫∆Æ
-            enemyObjectPool.Enqueue(enemy); // ≈•
-
+            // enemyObjectPool[i] = enemy; // Î∞∞Ïó¥
+            // enemyObjectPool.Add(enemy); // Î¶¨Ïä§Ìä∏
+            enemyObjectPool.Enqueue(enemy); // ÌÅê
+            
             enemy.SetActive(false);
         }
     }
@@ -42,22 +42,56 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         currentTime += Time.deltaTime;
 
-        if (currentTime > createTime) // ∑£¥˝«— Ω√∞£¿Ã µ… ∂ß ∏∂¥Ÿ ∑£¥˝«— ¿ßƒ°ø° Enemy ª˝º∫
+        if (currentTime > createTime) // ÎûúÎç§Ìïú ÏãúÍ∞ÑÏù¥ Îê† Îïå ÎßàÎã§ ÎûúÎç§Ìïú ÏúÑÏπòÏóê Enemy ÏÉùÏÑ±
         {
-            // ≈•
+            // ÌÅê
             if (enemyObjectPool.Count > 0)
             {
                 currentTime = 0f;
                 createTime = Random.Range(minTime, maxTime);
 
                 GameObject enemy = enemyObjectPool.Dequeue();
-
+                
                 int ranIndex = Random.Range(0, spawnPoints.Length);
                 Transform spawnPoint = spawnPoints[ranIndex];
-
+                
                 enemy.transform.position = spawnPoint.position;
                 enemy.SetActive(true);
             }
+            
+            // Î¶¨Ïä§Ìä∏
+            // if (enemyObjectPool.Count > 0)
+            // {
+            //     currentTime = 0f;
+            //     createTime = Random.Range(minTime, maxTime);
+            //
+            //     GameObject enemy = enemyObjectPool[0];
+            //     enemyObjectPool.Remove(enemy);
+            //     
+            //     int ranIndex = Random.Range(0, spawnPoints.Length);
+            //     Transform spawnPoint = spawnPoints[ranIndex];
+            //     
+            //     enemy.transform.position = spawnPoint.position;
+            //     enemy.SetActive(true);
+            // }
+
+            
+            // Î∞∞Ïó¥
+            // for (int i = 0; i < poolSize; i++)
+            // {
+            //     GameObject enemy = enemyObjectPool[i];
+            //     
+            //     if (!enemy.activeSelf)
+            //     {
+            //         int ranIndex = Random.Range(0, spawnPoints.Length);
+            //         Transform spawnPoint = spawnPoints[ranIndex];
+            //         
+            //         enemy.transform.position = spawnPoint.position;
+            //         enemy.SetActive(true);
+            //
+            //         break;
+            //     }
+            // }
         }
     }
 }

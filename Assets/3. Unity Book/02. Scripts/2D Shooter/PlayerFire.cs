@@ -1,8 +1,5 @@
-#define DEBUG_TEXT
-
 using System.Collections.Generic;
 using UnityEngine;
-
 
 public class PlayerFire : Singleton<PlayerFire>
 {
@@ -11,23 +8,23 @@ public class PlayerFire : Singleton<PlayerFire>
 
     public int poolSize = 10;
 
-    // public GameObject[] bulletObjectPool; // �迭
-    // public List<GameObject> bulletObjectPool; // ����Ʈ
-    public Queue<GameObject> bulletObjectPool; // ť
+    // public GameObject[] bulletObjectPool; // 배열
+    // public List<GameObject> bulletObjectPool; // 리스트
+    public Queue<GameObject> bulletObjectPool; // 큐
 
     void Start()
     {
-        // bulletObjectPool = new GameObject[poolSize]; // �迭
-        // bulletObjectPool = new List<GameObject>(); // ����Ʈ
-        bulletObjectPool = new Queue<GameObject>(); // ť
+        // bulletObjectPool = new GameObject[poolSize]; // 배열
+        // bulletObjectPool = new List<GameObject>(); // 리스트
+        bulletObjectPool = new Queue<GameObject>(); // 큐
 
         for (int i = 0; i < poolSize; i++)
         {
             GameObject bullet = Instantiate(bulletFactory);
 
-            // bulletObjectPool[i] = bullet; // �迭
-            // bulletObjectPool.Add(bullet); // ����Ʈ
-            bulletObjectPool.Enqueue(bullet); // ť
+            // bulletObjectPool[i] = bullet; // 배열
+            // bulletObjectPool.Add(bullet); // 리스트
+            bulletObjectPool.Enqueue(bullet); // 큐
 
             bullet.SetActive(false);
         }
@@ -35,22 +32,48 @@ public class PlayerFire : Singleton<PlayerFire>
 
     void Update()
     {
-#if UNITY_STANDARDALONE || UNITY_EDITOR || DEBUG_TEST
+#if UNITY_STANDARDALONE || UNITY_EDITOR
         if (Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("���콺 Ŭ��");
-            // ť
+            Debug.Log("마우스 클릭");
+            // 큐
             if (bulletObjectPool.Count > 0)
             {
                 GameObject bullet = bulletObjectPool.Dequeue();
                 bullet.SetActive(true);
                 bullet.transform.position = firePosition.transform.position;
             }
+            
+            // 리스트
+            // if (bulletObjectPool.Count > 0)
+            // {
+            //     GameObject bullet = bulletObjectPool[0]; // 가져올 오브젝트 선택
+            //     bullet.SetActive(true); // 오브젝트 사용
+            //     
+            //     bulletObjectPool.Remove(bullet); // Pool에서 오브젝트 제거
+            //     
+            //     bullet.transform.position = firePosition.transform.position;
+            // }
+            
+            // 배열
+            // for (int i = 0; i < poolSize; i++)
+            // {
+            //     GameObject bullet = bulletObjectPool[i];
+            //     
+            //     if (!bullet.activeSelf) // 선택한 총알 오브젝트가 비활성화 상태인지 확인
+            //     {
+            //         bullet.SetActive(true); // 총알을 사용하기 위해 활성화
+            //         bullet.transform.position = firePosition.transform.position; // 발사 위치 조정
+            //
+            //         break; // 반복문 종료
+            //     }
+            // }
         }
+        
 #elif UNITY_ANDROID || UNITY_IOS
         if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            Debug.Log("�հ��� ��ġ");
+            Debug.Log("손가락 터치");
 
             if (bulletObjectPool.Count > 0)
             {
@@ -59,8 +82,6 @@ public class PlayerFire : Singleton<PlayerFire>
                 bullet.transform.position = firePosition.transform.position;
             }
         }
-#else
-        Debug.Log("�� �� ������ �÷���");
 #endif
     }
 }

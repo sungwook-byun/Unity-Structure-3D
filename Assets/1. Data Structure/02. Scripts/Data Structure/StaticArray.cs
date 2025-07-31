@@ -2,17 +2,14 @@ using UnityEngine;
 
 public class StaticArray : MonoBehaviour
 {
-    // ÀÚ·áÇü [ ] : Á¤Àû ¹è¿­
-    public int[] array1; // ¹è¿­ ¼±¾ğ
-    public int[] array2 = { 10, 20, 30, 40, 50 }; // ¹è¿­ ¼±¾ğ°ú ÃÊ±âÈ­
-    public int[] array3 = new int[5]; // ¹è¿­ ¼±¾ğ°ú Å©±â ÁöÁ¤
-    public int[] array4 = new int[5] { 10, 20, 30, 40, 50 }; // ¹è¿­ ¼±¾ğ°ú Å©±â ÁöÁ¤ ¹× ÃÊ±âÈ­
+    // ìë£Œí˜• [ ] : ì •ì  ë°°ì—´
+    public int[] array1; // ë°°ì—´ ì„ ì–¸
+    public int[] array2 = { 10, 20, 30, 40, 50 }; // ë°°ì—´ ì„ ì–¸ê³¼ ì´ˆê¸°í™”
+    public int[] array3 = new int[5]; // ë°°ì—´ ì„ ì–¸ ë° ê³µê°„ í• ë‹¹
+    public int[] array4 = new int[5] { 10, 20, 30, 40, 50 }; // ë°°ì—´ ì„ ì–¸ ë° ê³µê°„ í• ë‹¹ + ì´ˆê¸°í™”
 
     void Start()
     {
-        int number = array2[3];
+        int number1 = array1[3];
     }
-
 }
-
-

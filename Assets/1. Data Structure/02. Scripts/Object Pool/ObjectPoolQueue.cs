@@ -3,44 +3,43 @@ using UnityEngine;
 
 public class ObjectPoolQueue : MonoBehaviour
 {
-    public Queue<GameObject> objQueue = new Queue<GameObject>();
+    public Queue<GameObject> objQueue = new Queue<GameObject>(); // ì˜¤ë¸Œì íŠ¸ë“¤ì´ ë“¤ì–´ê°ˆ í
 
-    public GameObject objPrefab;
-    public Transform parent;
+    public GameObject objPrefab; // ìƒì„±í•  ì˜¤ë¸Œì íŠ¸
+    public Transform parent; // ê³„ì¸µ êµ¬ì¡°ìƒ ë“¤ì–´ê°ˆ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸
 
-
-    private void Start()
+    void Start()
     {
         CreateObject();
     }
 
-    private void CreateObject() // ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇÏ´Â ±â´É -> PoolÀ» Ã¤¿ì´Â ±â´É
+    private void CreateObject() // ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•˜ëŠ” ê¸°ëŠ¥ -> Poolì„ ì±„ìš°ëŠ” ê¸°ëŠ¥
     {
         for (int i = 0; i < 30; i++)
         {
-           GameObject obj = Instantiate(objPrefab, parent); // ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇÏ°í, °èÃş±¸Á¶¸¦ parentÀÇ ÀÚ½ÄÀ¸·Î º¯°æ
+            GameObject obj = Instantiate(objPrefab, parent); // ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•˜ê³ , ê³„ì¸µêµ¬ì¡°ë¥¼ parentì˜ ìì‹ìœ¼ë¡œ ë³€ê²½
 
             EnqueueObject(obj);
         }
     }
 
-    public void EnqueueObject(GameObject newObj)
+    public void EnqueueObject(GameObject newObj) // ì§‘ì–´ë„£ëŠ” í•¨ìˆ˜
     {
         newObj.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         newObj.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-
+        
         objQueue.Enqueue(newObj);
-        newObj.SetActive(false); // ¿ÀºêÁ§Æ®°¡ ÀÛµ¿µÇÁö ¾Êµµ·Ï ²¨ÁÜ
+        newObj.SetActive(false); // ì˜¤ë¸Œì íŠ¸ê°€ ì‘ë™ë˜ì§€ ì•Šë„ë¡ Active -> false
     }
 
-    public GameObject DequeueObject()
+    public GameObject DequeueObject() // êº¼ë‚´ì“°ëŠ” í•¨ìˆ˜
     {
-        if (objQueue.Count < 10) 
-            CreateObject();
-
+        if (objQueue.Count < 10) // ëª‡ ê°œ ì•ˆ ë‚¨ì€ ê²½ìš°
+            CreateObject(); // ì¶”ê°€ ìƒì„±
+        
         GameObject obj = objQueue.Dequeue();
         obj.SetActive(true);
-
+        
         return obj;
     }
 }

@@ -8,7 +8,7 @@ public class Node : IComparable<Node>
 
     public float nodeTotalCost; // G
     public float estimateCost; // H
-
+    
     public bool isObstacle;
 
     public Node()

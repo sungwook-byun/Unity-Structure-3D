@@ -6,23 +6,23 @@ public class SelectionSort : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Á¤·Ä Àü : " + string.Join(", ", array));
+        Debug.Log("ì •ë ¬ ì „ : " + string.Join(", ", array));
 
         Selection(array);
-        Debug.Log("Á¤·Ä ÈÄ : " + string.Join(", ", array));
+        Debug.Log("ì •ë ¬ í›„ : " + string.Join(", ", array));
     }
-
+    
     private void Selection(int[] arr)
     {
         int n = arr.Length;
-
-        // ÀÎµ¦½º °ª ¼±ÅÃ
-        for (int i = 0; i < n - 1; i++) // i : ¼±ÅÃÇÑ ÀÎµ¦½º
+        
+        // ì¸ë±ìŠ¤ ê°’ ì„ íƒ
+        for (int i = 0; i < n - 1; i++) // i : ì„ íƒí•œ ì¸ë±ìŠ¤
         {
             int minIdx = i;
-
-            // µÚ¿¡ ÀÖ´Â °ªµé°ú ºñ±³
-            for (int j = i + 1; j < n; j++) // j : ºñ±³ÇÒ ÀÎµ¦½º
+            
+            // ë’¤ì— ìžˆëŠ” ê°’ë“¤ê³¼ ë¹„êµ
+            for (int j = i + 1; j < n; j++) // j : ë¹„êµí•  ì¸ë±ìŠ¤
             {
                 if (arr[j] < arr[minIdx])
                     minIdx = j;

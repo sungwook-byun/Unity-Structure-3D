@@ -8,7 +8,7 @@ public class BombSpawner : MonoBehaviour
     public int rangeX = 5;
     public int rangeZ = 5;
 
-    private IEnumerator Start()
+    IEnumerator Start()
     {
         while (true)
         {
@@ -22,9 +22,9 @@ public class BombSpawner : MonoBehaviour
     {
         float ranX = Random.Range(-rangeX, rangeX + 1);
         float ranZ = Random.Range(-rangeZ, rangeZ + 1);
-
+        
         Vector3 ranPos = new Vector3(ranX, 10f, ranZ);
-
+        
         Instantiate(bombPrefab, ranPos, Quaternion.identity);
     }
 }

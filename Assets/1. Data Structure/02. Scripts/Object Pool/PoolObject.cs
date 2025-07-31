@@ -1,22 +1,22 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PoolObject : MonoBehaviour
 {
     private ObjectPoolQueue pool;
-    public float bulletSpeed = 100f;
+    
+    public float bulletSpeed = 70f;
 
-
-    private void Awake()
+    void Awake()
     {
         pool = FindFirstObjectByType<ObjectPoolQueue>();
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         Invoke("ReturnPool", 3f);
     }
 
-    private void Update()
+    void Update()
     {
         transform.position += Vector3.forward * Time.deltaTime * bulletSpeed;
     }

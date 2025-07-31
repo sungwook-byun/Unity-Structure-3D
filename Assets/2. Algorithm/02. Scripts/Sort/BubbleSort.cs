@@ -1,26 +1,24 @@
-using System;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class BubbleSort : MonoBehaviour
 {
     private int[] array = { 5, 2, 1, 8, 3, 7, 6, 4 };
-
+    
     void Start()
     {
-        Debug.Log("Á¤·Ä Àü : " + string.Join(", ", array));
+        Debug.Log("ì •ë ¬ ì „ : " + string.Join(", ", array));
 
         Bubble(array);
-
-        Debug.Log("Á¤·Ä ÈÄ : " + string.Join(", ", array));
+        Debug.Log("ì •ë ¬ í›„ : " + string.Join(", ", array));
     }
 
     private void Bubble(int[] arr)
     {
         int n = arr.Length;
 
-        for(int i = 0; i < n - 1; i++)
+        for (int i = 0; i < n - 1; i++)
         {
-            for(int j = 0; j < n - 1; j++)
+            for (int j = 0; j < n - i - 1; j++)
             {
                 if (arr[j] > arr[j + 1])
                 {

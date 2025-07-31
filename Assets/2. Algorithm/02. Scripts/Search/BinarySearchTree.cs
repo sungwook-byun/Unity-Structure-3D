@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 public class BinarySearchTree : MonoBehaviour
@@ -16,8 +16,8 @@ public class BinarySearchTree : MonoBehaviour
     }
 
     private TreeNode root;
-    private int[] array = { 8, 3, 10, 1, 6, 14, 4, 7, 13 }; // ¹è¿­
-
+    private int[] array = { 8, 3, 10, 1, 6, 14, 4, 7, 13 }; // ë°°ì—´
+    
     private string result;
 
     void Start()
@@ -32,7 +32,7 @@ public class BinarySearchTree : MonoBehaviour
         result = String.Empty;
         InOrder(root);
         Debug.Log($"InOrder : {result.TrimEnd(',')}");
-
+        
         result = String.Empty;
         PostOrder(root);
         Debug.Log($"PostOrder : {result.TrimEnd(',')}");
@@ -51,7 +51,7 @@ public class BinarySearchTree : MonoBehaviour
         return node;
     }
 
-    private void PreOrder(TreeNode node) // ÀüÀ§ ¼øÈ¸
+    private void PreOrder(TreeNode node) // ì „ìœ„ ìˆœíšŒ
     {
         if (node == null)
             return;
@@ -61,7 +61,7 @@ public class BinarySearchTree : MonoBehaviour
         PreOrder(node.right);
     }
 
-    private void InOrder(TreeNode node) // ÁßÀ§ ¼øÈ¸
+    private void InOrder(TreeNode node) // ì¤‘ìœ„ ìˆœíšŒ
     {
         if (node == null)
             return;
@@ -71,7 +71,7 @@ public class BinarySearchTree : MonoBehaviour
         InOrder(node.right);
     }
 
-    private void PostOrder(TreeNode node) // ÈÄÀ§ ¼øÈ¸
+    private void PostOrder(TreeNode node) // í›„ìœ„ ìˆœíšŒ
     {
         if (node == null)
             return;
@@ -80,5 +80,5 @@ public class BinarySearchTree : MonoBehaviour
         PostOrder(node.right);
         result += $"{node.value}, ";
     }
-
+    
 }

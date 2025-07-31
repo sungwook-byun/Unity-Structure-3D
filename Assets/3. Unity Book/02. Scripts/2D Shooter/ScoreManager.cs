@@ -19,22 +19,22 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             currentScore = value;
 
-            currentScoreUI.text = "ÇöÀç Á¡¼ö : " + currentScore;
+            currentScoreUI.text = "í˜„ì¬ ì ìˆ˜ : " + currentScore;
 
             if (currentScore > bestScore)
             {
                 bestScore = currentScore;
-                bestScoreUI.text = "ÃÖ°í Á¡¼ö : " + bestScore;
+                bestScoreUI.text = "ìµœê³  ì ìˆ˜ : " + bestScore;
 
                 PlayerPrefs.SetInt("BestScore", bestScore);
             }
         }
     }
-
+    
     void Start()
     {
         bestScore = PlayerPrefs.GetInt("BestScore", 0);
 
-        bestScoreUI.text = "ÃÖ°í Á¡¼ö : " + bestScore;
+        bestScoreUI.text = "ìµœê³  ì ìˆ˜ : " + bestScore;
     }
 }

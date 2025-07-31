@@ -7,13 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/3. Unity Book/01. Scenes/3D FPS Shooter/LoginScene.unity
-    guid: 5d1834582385e3c4fa722d6e2fd7a679
+    guid: 13155e47f32ca604cb938d3689a3ebb0
   - enabled: 1
     path: Assets/3. Unity Book/01. Scenes/3D FPS Shooter/LoadingScene.unity
-    guid: a7c74655ac2ed49428a992b10e24c126
+    guid: c102b1d693e4bd044b89da3ac8bee675
   - enabled: 1
     path: Assets/3. Unity Book/01. Scenes/3D FPS Shooter/MainScene.unity
-    guid: 0effd991323633d49bdb93b6968474f0
+    guid: dddd2598a1ef68c4998a1d6ebbbec17c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -1,15 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HanoiTower : MonoBehaviour
 {
-    public enum HanoiLevel { Lv1 = 3, Lv2 , Lv3 };
+    public enum HanoiLevel { Lv1 = 3, Lv2, Lv3 }
     public HanoiLevel hanoiLevel = HanoiLevel.Lv1;
 
-    public GameObject[] donutPrefab;
+    public GameObject[] donutPrefabs;
     public BoardBar[] bars; // L, C, R
 
     public TextMeshProUGUI countTextUI;
@@ -20,55 +19,55 @@ public class HanoiTower : MonoBehaviour
     public static BoardBar currBar;
     public static int moveCount;
 
-    private void Awake()
+    void Awake()
     {
         answerButton.onClick.AddListener(HanoiAnswer);
     }
-
+    
     IEnumerator Start()
     {
-        for (int i = (int)hanoiLevel - 1; i >= 0; i--) // ¹İº¹¹®À¸·Î Level¸¸Å­ µµ³Ó »ı¼º
+        for (int i = (int)hanoiLevel - 1; i >= 0; i--) // ë°˜ë³µë¬¸ìœ¼ë¡œ Levelë§Œí¼ ë„ë„› ìƒì„±
         {
-            GameObject donut = Instantiate(donutPrefab[i]); // µµ³Ó »ı¼º
-            donut.transform.position = new Vector3(-5f, 5f, 0); // µµ³Ó »ı¼ºÀ§Ä¡ : ¿ŞÂÊ¸·´ë±âÂÊ
+            GameObject donut = Instantiate(donutPrefabs[i]); // ë„ë„› ìƒì„±
+            donut.transform.position = new Vector3(-5f, 5f, 0); // ë„ë„› ìƒì„± ìœ„ì¹˜ : ì™¼ìª½ ë§‰ëŒ€ê¸° + ìœ„ìª½
 
-            bars[0].PushDonut(donut); // ¹æ±İ »ı¼ºÇÑ µµ³ÓÀ» ÇØ´ç BarÀÇ Stack Push
-
-            yield return new WaitForSeconds(1f);
+            bars[0].PushDonut(donut); // ë°©ê¸ˆ ìƒì„±í•œ ë„ë„›ì„ í•´ë‹¹ Barì˜ Stack Push
+            
+            yield return new WaitForSeconds(1f); // ìˆœì°¨ì ìœ¼ë¡œ ìƒì„±
         }
+
         moveCount = 0;
         countTextUI.text = moveCount.ToString();
     }
 
-    private void Update()
+    void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             currBar.barStack.Push(selectedDonut);
-
+            
             isSelected = false;
             selectedDonut = null;
         }
+        
         countTextUI.text = moveCount.ToString();
     }
-
+    
     public void HanoiAnswer()
     {
         HanoiRoutine((int)hanoiLevel, 0, 1, 2);
     }
-
+    
     private void HanoiRoutine(int n, int from, int temp, int to)
     {
-        if(n == 1)
-            Debug.Log($"{n}¹ø µµ³ÓÀ» {from}¿¡¼­ {to}·Î ÀÌµ¿");
-
+        if (n == 1)
+            Debug.Log($"{n}ë²ˆ ë„ë„›ì„ {from}ì—ì„œ {to}ë¡œ ì´ë™");
         else
         {
             HanoiRoutine(n - 1, from, to, temp);
-            Debug.Log($"{n}¹ø µµ³ÓÀ» {from}¿¡¼­ {to}·Î ÀÌµ¿");
-
+            Debug.Log($"{n}ë²ˆ ë„ë„›ì„ {from}ì—ì„œ {to}ë¡œ ì´ë™");
+            
             HanoiRoutine(n - 1, temp, from, to);
         }
-
     }
 }

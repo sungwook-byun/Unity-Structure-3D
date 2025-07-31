@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIStackManager : MonoBehaviour
 {
     public Stack<GameObject> uiStack = new Stack<GameObject>();
-
+    
     public Button[] buttons;
     public GameObject[] popupUIs;
 
@@ -24,19 +24,19 @@ public class UIStackManager : MonoBehaviour
             currUI.SetActive(false);
         }
     }
-
+    
     private void PopupOn1()
     {
         popupUIs[0].SetActive(true);
         uiStack.Push(popupUIs[0]);
     }
-
+    
     private void PopupOn2()
     {
         popupUIs[1].SetActive(true);
         uiStack.Push(popupUIs[1]);
     }
-
+    
     private void PopupOn3()
     {
         popupUIs[2].SetActive(true);

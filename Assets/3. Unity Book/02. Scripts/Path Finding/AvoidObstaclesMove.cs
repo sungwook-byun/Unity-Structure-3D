@@ -11,38 +11,40 @@ public class AvoidObstaclesMove : MonoBehaviour
     private Vector3 targetPoint;
     public float steeringForce = 10f;
 
-    private void Start()
+    void Start()
     {
         targetPoint = Vector3.zero;
     }
 
     void Update()
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Input.GetMouseButtonDown(0))
         {
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity))
-                targetPoint = hit.point; // ¸¶¿ì½º Å¬¸¯ÇÑ °÷ÀÌ ¸ñÇ¥ ÁöÁ¡À¸·Î ¼³Á¤
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                targetPoint = hit.point; // ë§ˆìš°ìŠ¤ í´ë¦­í•œ ê³³ì„ ëª©í‘œ ì§€ì ìœ¼ë¡œ ì„¤ì •
         }
-
+        
         Vector3 dir = targetPoint - transform.position;
         dir.Normalize();
 
-        dir = GetAvoidanceDirection(dir); // Àå¾Ö¹° È¸ÇÇ ¹æÇâ °è»ê
+        dir = GetAvoidanceDirection(dir); // ì¥ì• ë¬¼ì´ ì—†ìœ¼ë©´ ê·¸ëŒ€ë¡œ / ìˆìœ¼ë©´ ë³€ê²½ëœ ë°©í–¥ì´ ì ìš©
 
         if (Vector3.Distance(targetPoint, transform.position) < 1f)
             return;
 
         curSpeed = speed * Time.deltaTime;
-        transform.position += transform.forward * curSpeed; // ÀÌµ¿ ¹æÇâÀ¸·Î ¼Óµµ¸¸Å­ ÀÌµ¿
+        transform.position += transform.forward * curSpeed;
+        
+        Quaternion rot = Quaternion.LookRotation(dir); // ë°©í–¥ì„ ì•Œë ¤ì£¼ëŠ” ë²¡í„°ë¥¼ ë„£ìœ¼ë©´ ê·¸ ë°©í–¥ì„ ë³´ëŠ” ê°’ì„ ì„¤ì •
+        transform.rotation = Quaternion.Slerp(transform.rotation, rot, steeringForce * Time.deltaTime);
 
-        Quaternion rot = Quaternion.LookRotation(dir); // ¹æÇâÀ» ¾Ë·ÁÁÖ´Â ¹éÅÍ¸¦ ³ÖÀ¸¸é ±× ¹æÇâÀ» º¸´Â °ªÀ» ¼³Á¤
-        transform.rotation = Quaternion.Slerp(transform.rotation, rot, steeringForce * Time.deltaTime); // È¸Àü ¼Óµµ ¼³Á¤
+
     }
 
-    // ÀÌµ¿ ¹æÇâ¿¡ Àå¾Ö¹°ÀÌ ÀÖÀ» °æ¿ì ÀÌµ¿ÇÏ·Á´Â ¹æÇâÀ» ¹Ù²Ù´Â ±â´É
+    // ì´ë™ ë°©í–¥ì— ì¥ì• ë¬¼ì´ ìˆì„ ê²½ìš° ì´ë™í•˜ë ¤ëŠ” ë°©í–¥ì„ ë°”ê¾¸ëŠ” ê¸°ëŠ¥
     public Vector3 GetAvoidanceDirection(Vector3 dir)
     {
         RaycastHit hit;
@@ -50,11 +52,12 @@ public class AvoidObstaclesMove : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, minDistToAvoid, layerMask))
         {
             Vector3 hitNormal = hit.normal;
-            hitNormal.y = 0; // ¼öÆò¸é¿¡¼­¸¸ È¸ÇÇ ¹æÇâ °è»ê
+            hitNormal.y = 0f;
 
             dir = transform.forward + hitNormal * force;
             dir.Normalize();
         }
+
         return dir;
     }
 }

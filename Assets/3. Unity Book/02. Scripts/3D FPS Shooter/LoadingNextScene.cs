@@ -1,36 +1,35 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System.Collections;
 
 public class LoadingNextScene : MonoBehaviour
 {
-    public int sceneNumber = 2;
-    public Slider loadingSlider;
-    public TextMeshProUGUI loadingText;
+   public int sceneNumber = 2;
+   public Slider loadingSlider;
+   public TextMeshProUGUI loadingText;
 
-    private void Start()
-    {
-        StartCoroutine(TransitionNextScene(sceneNumber));
-    }
+   void Start()
+   {
+      StartCoroutine(TransitionNextScene(sceneNumber));
+   }
+   
+   IEnumerator TransitionNextScene(int num)
+   {
+      AsyncOperation ao = SceneManager.LoadSceneAsync(num);
+      
+      ao.allowSceneActivation = false; // ë¡œë“œê°€ ì™¼ë£Œê°€ ë˜ì–´ë„ ë¡œë“œ X
+      
+      while (!ao.isDone)
+      {
+         loadingSlider.value = ao.progress;
+         loadingText.text = $"{ao.progress * 100f}%";
 
+         if (ao.progress >= 0.9f)
+            ao.allowSceneActivation = true;
 
-    IEnumerator TransitionNextScene(int num)
-    {
-        AsyncOperation ao = SceneManager.LoadSceneAsync(num);
-        ao.allowSceneActivation = false; // ·Îµå°¡ ¿Ï·áµÇ´õ¶óµµ ÀÚµ¿À¸·Î ÀüÈ¯ÇÏÁö ¾ÊÀ½ (ÀüÈ¯¹æÁö)
-
-        while (!ao.isDone)
-        {
-            loadingSlider.value = ao.progress;
-            loadingText.text = $"{ao.progress * 100f}%";
-
-            if (ao.progress >= 0.9f) // ·Îµå°¡ °ÅÀÇ ¿Ï·áµÇ¸é
-                ao.allowSceneActivation = true; // ÀÚµ¿À¸·Î ÀüÈ¯ Çã¿ë
-
-            yield return null; // ´ÙÀ½ ÇÁ·¹ÀÓ±îÁö ´ë±â
-
-        }
-    }
+         yield return null;
+      }
+   }
 }

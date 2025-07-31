@@ -17,25 +17,22 @@ public class DijkstraSearch : MonoBehaviour
     {
         int start = 0;
         int[] dist;
-        int[] prev; // ÀÌÀü ³ëµå ¹øÈ£
-
+        int[] prev;
+        
         Dijkstra(start, out dist, out prev);
 
-        // °á°ú Ãâ·Â
         for (int i = 0; i < nodes.GetLength(0); i++)
-        {
-            Debug.Log($"{start}¿¡¼­ {i}±îÁö ÃÖ´Ü °Å¸®: {dist[i]}, °æ·Î: {GetPath(i, prev)}");
-        }
+            Debug.Log($"{start}ì—ì„œ {i}ê¹Œì§€ ìµœë‹¨ ê±°ë¦¬ : {dist[i]}, ê²½ë¡œ : {GetPath(i, prev)}");
     }
 
-    void Dijkstra(int start, out int[] dist, out int[] prev)
+    private void Dijkstra(int start, out int[] dist, out int[] prev)
     {
-        int n = nodes.GetLength(0);
+        int n = nodes.GetLength(0); // 6
         dist = new int[n];
         prev = new int[n];
         bool[] visited = new bool[n];
 
-        // ÃÊ±âÈ­
+        // ì§€ì—­ ë³€ìˆ˜ ê°’ë“¤ì„ ì´ˆê¸°í™”
         for (int i = 0; i < n; i++)
         {
             dist[i] = int.MaxValue; // 2,147,483,647
@@ -43,13 +40,13 @@ public class DijkstraSearch : MonoBehaviour
             visited[i] = false;
         }
 
-        dist[start] = 0; // ÀÚ±â ÀÚ½ÅÀÇ ÃÖ´Ü °Å¸®´Â 0
+        dist[start] = 0; // 0ë²ˆ ë…¸ë“œì—ì„œ ì‹œì‘
         for (int cnt = 0; cnt < n; cnt++)
         {
-            int u = -1; // ÃÖ´Ü°Å¸® ³ëµå ÀÎµ¦½º
-            int min = int.MaxValue; // ÃÖ´Ü°Å¸® ³ëµå °¡ÁßÄ¡
-
-            // ¹æ¹®ÇÏÁö ¾ÊÀº ³ëµå Áß ÃÖ¼Ò °Å¸® ¼±ÅÃ
+            int u = -1;  // ìµœë‹¨ ê±°ë¦¬ ë…¸ë“œ
+            int min = int.MaxValue; // ìµœë‹¨ ê±°ë¦¬
+            
+            // ë°©ë¬¸í•˜ì§€ ì•Šì€ ë…¸ë“œ ì¤‘ ìµœë‹¨ ê±°ë¦¬ ë…¸ë“œì™€ ìµœë‹¨ ê±°ë¦¬ ì„ íƒ
             for (int j = 0; j < n; j++)
             {
                 if (!visited[j] && dist[j] < min)
@@ -59,12 +56,11 @@ public class DijkstraSearch : MonoBehaviour
                 }
             }
 
-            if (u == -1)
-                break; // ³²Àº ³ëµå ¾øÀ½
+            if (u == -1) // ë”ì´ìƒ ìµœë‹¨ ê±°ë¦¬ ë…¸ë“œ ì—†ìŒ
+                break;
 
             visited[u] = true;
 
-            // ÀÎÁ¢ ³ëµå ¾÷µ¥ÀÌÆ®
             for (int k = 0; k < n; k++)
             {
                 if (nodes[u, k] > 0 && !visited[k])
@@ -80,12 +76,11 @@ public class DijkstraSearch : MonoBehaviour
         }
     }
 
-    string GetPath(int end, int[] prev)
+    private string GetPath(int end, int[] prev)
     {
         if (prev[end] == -1)
             return end.ToString();
 
-        return
-            GetPath(prev[end], prev) + " ¡æ " + end;
+        return $"{GetPath(prev[end], prev)} -> {end.ToString()}";
     }
 }

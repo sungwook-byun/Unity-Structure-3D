@@ -1,50 +1,52 @@
-
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class EnemyFSM : MonoBehaviour
 {
     private enum EnemyState { Idle, Move, Attack, Return, Damaged, Die }
     private EnemyState m_State;
 
-    public float findDistance = 8f; // Å½Áö°Å¸®
-    private Transform player; // Å¸°Ù
-    public float attackDistance = 3f; // °ø°İ °¡´É°Å¸®
-    public float moveSpeed = 5f; // ÀÌµ¿ ¼Óµµ
-    private CharacterController cc; // Ä³¸¯ÅÍ ÄÁÆ®·Ñ·¯
+    private Transform player; // íƒ€ê²Ÿ
+    private CharacterController cc;
 
     private Animator anim;
     private NavMeshAgent smith;
 
-    private float currentTime = 0f; // Å¸ÀÌ¸Ó
-    private float attackDelay = 2f; // °ø°İ µô·¹ÀÌ ½Ã°£
+    public float findDistance = 8f; // íƒì§€ ê±°ë¦¬
+    public float attackDistance = 3f; // ê³µê²© ê°€ëŠ¥ ê±°ë¦¬
+    public float moveSpeed = 5f; // ì´ë™ ì†ë„
+
+    private float currentTime = 0f; // íƒ€ì´ë¨¸
+    private float attackDelay = 2f; // ê³µê²© ë”œë ˆì´
 
     public int attackPower = 3;
     public int hp = 15;
-    private int maxHp = 15; // ÃÖ´ë Ã¼·Â
-    public Slider hpSlider; // Ã¼·Â ½½¶óÀÌ´õ UI
+    private int maxHp = 15;
+    public Slider hpSlider;
 
     private Vector3 originPos;
     private Quaternion originRot;
-    public float moveDistance = 20f; // ÀÌµ¿ °Å¸® (¿ø·¡ À§Ä¡¿¡¼­ ÀÌµ¿ÇÒ °Å¸®)
+    public float moveDistance = 20f;
 
-    private void Start()
+    void Start()
     {
         m_State = EnemyState.Idle;
         player = GameObject.Find("Player").transform;
         cc = GetComponent<CharacterController>();
-        originPos = transform.position; // ¿ø·¡ À§Ä¡ ÀúÀå
+        originPos = transform.position;
         originRot = transform.rotation;
         anim = transform.GetComponentInChildren<Animator>();
         smith = GetComponent<NavMeshAgent>();
 
-        // Cursor.visible = false; // Ä¿¼­ ¼û±è
-        // Cursor.lockState = CursorLockMode.Locked; // Ä¿¼­ Àá±İ
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void Update()
+    void Update()
     {
         switch (m_State)
         {
@@ -75,133 +77,136 @@ public class EnemyFSM : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, player.position) < findDistance)
         {
-            anim.SetTrigger("IdleToMove"); // ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å ¼³Á¤
+            anim.SetTrigger("IdleToMove");
             m_State = EnemyState.Move;
-            Debug.Log("»óÅÂ ÀüÈ¯ : Idle -> Move");
+            Debug.Log("ìƒíƒœ ì „í™˜ : Idle -> Move");
         }
     }
+
     private void Move()
     {
-        if(Vector3.Distance(transform.position, originPos) > moveDistance)
+        if (Vector3.Distance(transform.position, originPos) > moveDistance)
         {
-            m_State = EnemyState.Return; // ¿ø·¡ À§Ä¡¿¡¼­ ³Ê¹« ¸Ö¸® ÀÌµ¿ÇÑ °æ¿ì -> Return »óÅÂ·Î ÀüÈ¯
-            Debug.Log("»óÅÂ ÀüÈ¯ : Move -> Return");
+            m_State = EnemyState.Return;
+            Debug.Log("ìƒíƒœ ì „í™˜ : Move -> Return");
         }
-        else if (Vector3.Distance(transform.position, player.position) > attackDistance) // Å¸°ÙÀÌ °ø°İ °Å¸®º¸´Ù ¸Õ °æ¿ì -> ÀÌµ¿ ½ÇÇà
+        else if (Vector3.Distance(transform.position, player.position) > attackDistance) // íƒ€ê²Ÿì´ ê³µê²© ê±°ë¦¬ë³´ë‹¤ ë¨¼ ê²½ìš° -> ì´ë™ ì‹¤í–‰
         {
             smith.isStopped = true;
-            smith.ResetPath(); // NavMeshAgentÀÇ °æ·Î¸¦ ÃÊ±âÈ­
-
+            smith.ResetPath();
+            
             smith.stoppingDistance = attackDistance;
-            smith.SetDestination(player.position); // NavMeshAgent¸¦ »ç¿ëÇÏ¿© Å¸°Ù À§Ä¡·Î ÀÌµ¿
+            smith.SetDestination(player.position);
         }
-        else // Å¸°ÙÀÌ °ø°İ °Å¸®º¸´Ù °¡±î¿î °æ¿ì -> °ø°İ ÀüÈ¯
+        else // íƒ€ê²Ÿì´ ê³µê²© ê±°ë¦¬ ë‚´ì— ìˆëŠ” ê²½ìš° -> ê³µê²© ì „í™˜
         {
             currentTime = attackDelay;
-            anim.SetTrigger("MoveToAttackDelay"); // ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å ¼³Á¤
+            anim.SetTrigger("MoveToAttackDelay");
             m_State = EnemyState.Attack;
-            Debug.Log("»óÅÂ ÀüÈ¯ : Move -> Attack");
+            Debug.Log("ìƒíƒœ ì „í™˜ : Move -> Attack");
         }
     }
+
     private void Attack()
     {
-        if (Vector3.Distance(transform.position, player.position) < attackDistance) // °ø°İ ¹üÀ§ ³»¿¡ ÀÖ´Â °æ¿ì -> °ø°İ ½ÇÇà
+        if (Vector3.Distance(transform.position, player.position) < attackDistance) // ê³µê²© ë²”ìœ„ ë‚´ì— ìˆëŠ” ê²½ìš° -> ê³µê²© ì‹¤í–‰
         {
             currentTime += Time.deltaTime;
-            if(currentTime > attackDelay) // °ø°İ µô·¹ÀÌ°¡ ³¡³µÀ» ¶§
+            if (currentTime > attackDelay)
             {
-                currentTime = 0f; // Å¸ÀÌ¸Ó ÃÊ±âÈ­
-                // player.GetComponent<FPS_PlayerMove>().DamageAction(attackPower); // ÇÃ·¹ÀÌ¾î¿¡°Ô µ¥¹ÌÁö Àû¿ë
-                anim.SetTrigger("StartAttack"); // ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å ¼³Á¤
-                Debug.Log("°ø°İ");
+                currentTime = 0f;
+                // player.GetComponent<FPSPlayerMove>().DamageAction(attackPower);
+                anim.SetTrigger("StartAttack");
+                Debug.Log("ê³µê²©");
             }
         }
-        else // °ø°İ ¹üÀ§ ¹Û¿¡ ÀÖÀ» °æ¿ì -> Move ÀüÈ¯
+        else // ê³µê²© ë²”ìœ„ ë°–ì— ìˆì„ ê²½ìš° -> Move ì „í™˜
         {
-            currentTime = 0f; // Å¸ÀÌ¸Ó ÃÊ±âÈ­
-            anim.SetTrigger("AttackToMove"); // ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å ¼³Á¤
+            currentTime = 0f;
+            anim.SetTrigger("AttackToMove");
             m_State = EnemyState.Move;
-            Debug.Log("»óÅÂ ÀüÈ¯ : Attack -> Move");
+            Debug.Log("ìƒíƒœ ì „í™˜ : Attack -> Move");
         }
     }
 
     public void AttackAction()
     {
-        player.GetComponent<FPS_PlayerMove>().DamageAction(attackPower);
+        player.GetComponent<FPSPlayerMove>().DamageAction(attackPower);
     }
 
     private void Return()
-    {   
-        if (Vector3.Distance(transform.position, originPos) > 0.1f) // ¿ø·¡ À§Ä¡·Î µ¹¾Æ°¡´Â Áß
+    {
+        if (Vector3.Distance(transform.position, originPos) > 0.1f) // ì›ë˜ ìœ„ì¹˜ê°€ ì•„ë‹Œ ê²½ìš° -> ì›ë˜ ìœ„ì¹˜ë¡œ ì´ë™
         {
-            smith.SetDestination(originPos); // NavMeshAgent¸¦ »ç¿ëÇÏ¿© ¿ø·¡ À§Ä¡·Î ÀÌµ¿
-            smith.stoppingDistance = 0f; // µµÂø °Å¸® ¼³Á¤
+            smith.SetDestination(originPos);
+            smith.stoppingDistance = 0f;
         }
-        else // ¿ø·¡ À§Ä¡¿¡ µµÂøÇÑ °æ¿ì -> Idle »óÅÂ·Î ÀüÈ¯
+        else // ì›ë˜ ìœ„ì¹˜ ë„ì°©í•œ ê²½ìš°
         {
-            smith.isStopped = true; // NavMeshAgent Á¤Áö
-            smith.ResetPath(); // NavMeshAgentÀÇ °æ·Î¸¦ ÃÊ±âÈ­
-
-            transform.position = originPos; // À§Ä¡¸¦ ¿ø·¡ À§Ä¡·Î ¼³Á¤
-            transform.rotation = originRot; // È¸ÀüÀ» ¿ø·¡ È¸ÀüÀ¸·Î ¼³Á¤
+            smith.isStopped = true;
+            smith.ResetPath();
+            
+            transform.position = originPos;
+            transform.rotation = originRot;
             hp = 15;
-            anim.SetTrigger("MoveToIdle"); // ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å ¼³Á¤
+            anim.SetTrigger("MoveToIdle");
             m_State = EnemyState.Idle;
-            Debug.Log("»óÅÂ ÀüÈ¯ : Return -> Idle");
+            Debug.Log("ìƒíƒœ ì „í™˜ : Return -> Idle");
         }
     }
 
     public void HitEnemy(int hitPower)
     {
-        if (m_State == EnemyState.Damaged || m_State == EnemyState.Die || m_State == EnemyState.Return) // ÀÌ¹Ì ÇÇ°İ »óÅÂÀÌ°Å³ª Á×Àº »óÅÂÀÌ°Å³ª ¿ø·¡ À§Ä¡·Î µ¹¾Æ°¡´Â ÁßÀÎ °æ¿ì
-            return; // ¾Æ¹«°Íµµ ÇÏÁö ¾ÊÀ½
+        if (m_State == EnemyState.Damaged || m_State == EnemyState.Die || m_State == EnemyState.Return)
+            return;
 
         hp -= hitPower;
-        smith.isStopped = true; // NavMeshAgent Á¤Áö
-        smith.ResetPath(); // NavMeshAgentÀÇ °æ·Î¸¦ ÃÊ±âÈ­
 
-        if (hp > 0) // °ø°İÀ» ¹Ş¾Ò´Âµ¥ »ì¾Ò´Ù¸é
+        smith.isStopped = true;
+        smith.ResetPath();
+
+        if (hp > 0) // ê³µê²©ì„ ë°›ì•˜ëŠ”ë° ì‚´ì•˜ë‹¤ë©´
         {
-            anim.SetTrigger("Damaged"); // ÇÇ°İ ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å ¼³Á¤
-            m_State = EnemyState.Damaged; // ÇÇ°İ »óÅÂ·Î ÀüÈ¯
-            Debug.Log("»óÅÂ ÀüÈ¯ : Any State -> Damaged");
-            Damaged(); // ÇÇ°İ Ã³¸® ½ÇÇà
+            anim.SetTrigger("Damaged");
+            m_State = EnemyState.Damaged;
+            Debug.Log("ìƒíƒœ ì „í™˜ : Any State -> Damaged");
+            Damaged();
         }
-        else // °ø°İÀ» ¹Ş¾Æ¼­ Á×¾ú´Ù¸é
+        else // ê³µê²©ì„ ë°›ì•„ì„œ ì£½ì—ˆë‹¤ë©´
         {
-            anim.SetTrigger("Die"); // Á×À½ ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å ¼³Á¤
-            m_State = EnemyState.Die; // Á×À½ »óÅÂ·Î ÀüÈ¯
-            Debug.Log("»óÅÂ ÀüÈ¯ : Any State -> Die");
-            Die(); // Á×À½ Ã³¸® ½ÇÇà
+            anim.SetTrigger("Die");
+            m_State = EnemyState.Die;
+            Debug.Log("ìƒíƒœ ì „í™˜ : Any State -> Die");
+            Die();
         }
     }
 
     private void Damaged()
     {
-        StartCoroutine(DamageProcess()); // µ¥¹ÌÁö ÄÚ·çÆ¾ ½ÇÇà
+        StartCoroutine(DamageProcess());
     }
 
     IEnumerator DamageProcess()
     {
-        yield return new WaitForSeconds(1f); // ÇÇ°İ ¾Ö´Ï¸ŞÀÌ¼Ç ½Ã°£¸¸Å­ ´ë±â
+        yield return new WaitForSeconds(1f); // í”¼ê²© ì• ë‹ˆë©”ì´ì…˜ ì‹œê°„ë§Œí¼ ëŒ€ê¸°
 
-        m_State = EnemyState.Move; // ÇÇ°İ ÈÄ ÀÌµ¿ »óÅÂ·Î ÀüÈ¯
-        Debug.Log("»óÅÂ ÀüÈ¯ : Damage -> Move");
+        m_State = EnemyState.Move;
+        Debug.Log("ìƒíƒœ ì „í™˜ : Damagd -> Move");
     }
 
     private void Die()
     {
         StopAllCoroutines();
 
-        StartCoroutine(DieProcess()); // Á×À½ ÄÚ·çÆ¾ ½ÇÇà
+        StartCoroutine(DieProcess());
     }
 
     IEnumerator DieProcess()
     {
-        cc.enabled = false; // Ä³¸¯ÅÍ ÄÁÆ®·Ñ·¯ ºñÈ°¼ºÈ­
+        cc.enabled = false;
 
-        yield return new WaitForSeconds(2f); // Á×À½ ¾Ö´Ï¸ŞÀÌ¼Ç ½Ã°£¸¸Å­ ´ë±â
-        Debug.Log("¼Ò¸ê");
-        Destroy(gameObject); // ¿ÀºêÁ§Æ® Á¦°Å
+        yield return new WaitForSeconds(2f);
+        Debug.Log("ì†Œë©¸");
+        Destroy(gameObject);
     }
 }

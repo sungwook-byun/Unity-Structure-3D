@@ -3,15 +3,15 @@ using UnityEngine.AI;
 
 public class BossController : MonoBehaviour
 {
-    public Transform target;
     private NavMeshAgent agent;
+    public Transform target;
 
-    private void Start()
+    void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent =  GetComponent<NavMeshAgent>();
     }
-
-    private void Update()
+    
+    void Update()
     {
         agent.SetDestination(target.position);
     }

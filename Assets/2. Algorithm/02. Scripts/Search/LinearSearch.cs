@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LinearSearch : MonoBehaviour
@@ -5,7 +6,7 @@ public class LinearSearch : MonoBehaviour
     private int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     public int target = 7;
 
-    private void Start()
+    void Start()
     {
         LSearch(array, target);
     }
@@ -16,7 +17,7 @@ public class LinearSearch : MonoBehaviour
         {
             if (arr[i] == t)
             {
-                Debug.Log($"{t}Àº {i}¹øÂ°¿¡ ÀÖ½À´Ï´Ù.");
+                Debug.Log($"{t}ì€ {i}ë²ˆì§¸ì— ìˆìŠµë‹ˆë‹¤.");
             }
         }
     }
