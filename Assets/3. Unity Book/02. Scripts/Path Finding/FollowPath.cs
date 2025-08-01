@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Algorithm; // Assuming Path is defined in this namespace
 
 public class FollowPath : MonoBehaviour
 {
