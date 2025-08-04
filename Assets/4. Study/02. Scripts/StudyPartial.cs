@@ -2,7 +2,13 @@ using UnityEngine;
 
 public partial class StudyPartial : MonoBehaviour
 {
-    private void Start()
+    private int number;
+
+    public CharacterController cc;
+    public Transform tf;
+    public Rigidbody rb;
+    
+    void Start()
     {
         MethodA();
         MethodB();
@@ -12,18 +18,19 @@ public partial class StudyPartial : MonoBehaviour
     {
         Debug.Log("Method A");
     }
-
 }
 
-// º¯¼ö, ÇÔ¼öÀÌ¸§ÀÌ µ¿ÀÏÇÏ¸é X
 public partial class StudyPartial : MonoBehaviour
 {
+    // private int number; //  ë³€ìˆ˜ ì´ë¦„ ë™ì¼ X
+
+    // void Start() // í•¨ìˆ˜ ì´ë¦„ ë™ì¼ X
+    // {
+    //     
+    // }
+    
     private void MethodB()
     {
         Debug.Log("Method B");
     }
 }
-
-
-
-

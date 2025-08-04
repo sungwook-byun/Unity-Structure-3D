@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class StudyStatic : MonoBehaviour
 {
-    private void Start()
+    void Start()
     {
-        Debug.Log($"Á¤Àû º¯¼ö¿¡ Á¢±Ù : {StaticClass.number}");
+        Debug.Log($"ì •ì  ë³€ìˆ˜ì— ì ‘ê·¼ : {StaticClass.number}");
     }
 }
 
 public class StaticClass
 {
     public static StaticClass instance = new StaticClass();
-    public static int number;
+    public static int number = 10;
 
     public StaticClass()
     {
-        Debug.Log($"»ı¼ºÀÚ ½ÇÇà : {number}");
+        Debug.Log($"ìƒì„±ì ì‹¤í–‰ : {number}");
     }
 }

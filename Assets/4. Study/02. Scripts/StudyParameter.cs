@@ -1,63 +1,80 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StudyParameter : MonoBehaviour
 {
     public int number = 1;
     public int number2;
-    public int number3;
 
-    public int hp = 100;
-    public int mp = 50;
-    public int[] intArray = new int[3] { 1, 2, 3 };
+    public GameObject player;
+    public GameObject enemy;
+    public GameObject item;
+    
+    public List<GameObject> objs = new List<GameObject>();
 
     void Start()
     {
         NomalParameter(number);
-
         ReferenceParameter(ref number);
+        OutParameter(10, 10f, out number, out number2);
 
-        OutParameter(out number2, out number3);
-
-        UseSkill(out hp, out mp);
-
-        ArrayParameter(intArray);
-        ParamsParameter(10, 20, 30);
-
+        // int[] intArray = new int[3] { 10, 20, 30 };
+        List<int> intList = new List<int>() { 10, 20, 30 };
+        intList.Add(40);
+        intList.Add(50);
+        
+        // ArrayParameter(intArray);
+        ArrayParameter(intList);
+        
+        ParamsParameter(10, 20, 30, 40, 50);
+        
+        // objs.Add(player);
+        // objs.Add(enemy);
+        // objs.Add(item);
+        
+        GameObjectActivate2(false, player, item);
     }
-
-    // ÀÏ¹İÀûÀÎ ¸Å°³º¯¼ö -> Call by Value
+    
+    
+    // ì„ íƒì  ë§¤ê°œë³€ìˆ˜ (Default ë§¤ê°œë³€ìˆ˜)
+    private void DefaultParameter(int num = 3)
+    {
+        
+    }
+    
+    // ì˜¤ë²„ë¡œë”© : ë§¤ê°œë³€ìˆ˜ë¥¼ ë‹¤ë¥´ê²Œí•´ì„œ ë‹¤ë¥¸ ê¸°ëŠ¥ì„ êµ¬í˜„í•˜ëŠ” ë°©ë²•
+    private void OverloadingMethod() { Debug.Log("ê¸°ëŠ¥ A"); } 
+    
+    private void OverloadingMethod(int num) { Debug.Log("ê¸°ëŠ¥ B"); }
+    
+    private void OverloadingMethod(float num) { Debug.Log("ê¸°ëŠ¥ C"); }
+    
+    private void OverloadingMethod(bool isNum) { Debug.Log("ê¸°ëŠ¥ D"); }
+    
+    private void OverloadingMethod(int num1, int num2) { Debug.Log("ê¸°ëŠ¥ E"); }
+    
+    // ë§¤ê°œë³€ìˆ˜ -> Call by Value
     private void NomalParameter(int num)
     {
-        num = 10;
+       
     }
-
-    // ÂüÁ¶ ¹æ½ÄÀÇ ¸Å°³º¯¼ö -> Call by Reference
+    
+    // ì°¸ì¡° ë°©ì‹ì˜ ë§¤ê°œë³€ìˆ˜ -> Call by Reference / ìˆ˜ì •ì˜ ê°œë…
     private void ReferenceParameter(ref int num)
     {
         num = 20;
     }
 
-    private void OutParameter(out int num, out int num2)
+    // ë°˜í™˜ì˜ ê°œë…
+    // ì´ˆê¸°í™”í•˜ì§€ ì•Šì•„ë„ ì‚¬ìš© ê°€ëŠ¥
+    private void OutParameter(int number, float number2, out int num, out int num2)
     {
-        num = 30; // ¹İµå½Ã °ªÀ» ÇÒ´çÇØ¾ß ÇÔ
-        num2 = 40; // ¹İµå½Ã °ªÀ» ÇÒ´çÇØ¾ß ÇÔ
+        num = 30;
+        num2 = 50;
     }
-
-    private void UseSkill(out int hp, out int mp)
-    {
-        hp = 90; 
-        mp = 40;  
-    }
-
-    private void ArrayParameter(int[] numbers)
-    {
-        foreach(var n in numbers)
-        {
-            Debug.Log(n);
-        }
-    }
-
-    private void ParamsParameter(params int[] numbers)
+    
+    // Collectionì„ ë§¤ê°œë³€ìˆ˜ë¡œ ë„£ì€ ê²½ìš°
+    private void ArrayParameter(List<int> numbers)
     {
         foreach (var n in numbers)
         {
@@ -65,17 +82,30 @@ public class StudyParameter : MonoBehaviour
         }
     }
 
-    #region ¶Ç´Ù¸¥ ¸Å°³º¯¼ö
+    // paramsë¥¼ í™œìš©í•œ ë§¤ê°œë³€ìˆ˜ -> ì¸ìë¥¼ ì§ì ‘ ë„£ì–´ì„œ ì‚¬ìš© ê°€ëŠ¥
+    private void ParamsParameter(params int[] numbers)
+    {
+        foreach (var n in numbers)
+        {
+            Debug.Log(n);
+        }
+    }
+    
+    private void GameObjectActivate()
+    {
+        // player.SetActive(false);
+        // enemy.SetActive(false);
+        // item.SetActive(false);
+        
+        foreach (var o in objs)
+        {
+            o.SetActive(false);
+        }
+    }
 
-    // ¿À¹ö·Îµù : ¸Å°³º¯¼ö¸¦ ´Ù¸£°ÔÇØ¼­ ´Ù¸¥ ±â´ÉÀ» ±¸ÇöÇÏ´Â ¹æ¹ı
-    private void OverloadingMethod() { Debug.Log("±â´É A"); }
-
-    private void OverloadingMethod(int num) { Debug.Log("±â´É B"); }
-
-    private void OverloadingMethod(float num) { Debug.Log("±â´É C"); }
-
-    private void OverloadingMethod(bool isNum) { Debug.Log("±â´É D"); }
-
-    private void OverloadingMethod(int num1, int num2) { Debug.Log("±â´É E"); }
-    #endregion
+    private void GameObjectActivate2(bool isActive, params GameObject[] objs)
+    {
+        foreach (var o in objs)
+            o.SetActive(isActive);
+    }
 }

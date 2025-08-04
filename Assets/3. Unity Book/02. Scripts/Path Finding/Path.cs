@@ -1,7 +1,7 @@
-using Mono.Cecil;
 using UnityEngine;
+
 namespace Algorithm
-{ 
+{
     public class Path : MonoBehaviour
     {
         public Vector3[] points;
@@ -12,7 +12,7 @@ namespace Algorithm
         {
             return points[index];
         }
-    
+
         void OnDrawGizmos()
         {
             for (int i = 0; i < points.Length; i++)
