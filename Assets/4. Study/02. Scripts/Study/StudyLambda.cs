@@ -30,6 +30,12 @@ public class StudyLambda : MonoBehaviour
             ButtonEvent();
             OnLog("Lambda");
         });
+
+        myDelegate += OnLog;
+
+        myDelegate += str => OnLog(str);
+
+        myDelegate?.Invoke("Lambda");
     }
 
     private void ButtonEvent()

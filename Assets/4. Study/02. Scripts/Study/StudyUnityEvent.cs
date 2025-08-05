@@ -7,16 +7,23 @@ public class StudyUnityEvent : MonoBehaviour
 
     void Start()
     {
-        onUnityEvent.AddListener(delegate
-        {
-            Debug.Log("Hello");
-            Debug.Log("Unity");
-            Debug.Log("World");
-            MethodA();
-            MethodB();
+        // onUnityEvent += MethodA;
+        onUnityEvent.AddListener(MethodA);
+        onUnityEvent.RemoveListener(MethodA);
+        
+        onUnityEvent.RemoveAllListeners();
+        
 
-            PrintLog("Hello Unity");
-        });
+        // onUnityEvent.AddListener(delegate
+        // {
+        //     Debug.Log("Hello");
+        //     Debug.Log("Unity");
+        //     Debug.Log("World");
+        //     MethodA();
+        //     MethodB();
+        //
+        //     PrintLog("Hello Unity");
+        // });
     }
 
     void Update()

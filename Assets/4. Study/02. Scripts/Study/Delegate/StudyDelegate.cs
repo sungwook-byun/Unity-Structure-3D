@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class StudyDelegate : MonoBehaviour
 {
     public delegate void TimerStart();
-    public TimerStart onTimerStart;
+    public event TimerStart onTimerStart;
     
     public delegate void TimerEnd();
     public TimerEnd onTimerEnd;

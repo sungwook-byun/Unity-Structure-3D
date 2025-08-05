@@ -22,8 +22,10 @@ public class StudyFunc3 : MonoBehaviour
         GetAction = () =>
         {
             if (GetHp() > 50)
-                return "공격";
+                return "돌진";
             else if (GetHp() > 20)
+                return "공격";
+            else if (GetHp() > 0)
                 return "도망";
             else
                 return "죽음";

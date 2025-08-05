@@ -20,7 +20,7 @@ public class StudyEventHandler : MonoBehaviour
             this.damage = damage;
         }
     }
-    
+
     private event EventHandler handler;
 
     void Start()
@@ -34,6 +34,8 @@ public class StudyEventHandler : MonoBehaviour
         {
             CharacterData data = new CharacterData("A", 1, 2, 3, 4);
             handler?.Invoke(this, data);
+            
+            // handler?.Invoke(this, EventArgs.Empty);
         }
     }
 
