@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class ScoreDisplay : MonoBehaviour, IObserver
@@ -16,7 +16,7 @@ public class ScoreDisplay : MonoBehaviour, IObserver
     {
         subject.RemoveObserver(this);
     }
-
+    
     public void Notify(int score)
     {
         scoreUI.text = score.ToString();

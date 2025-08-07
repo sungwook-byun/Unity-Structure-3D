@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StudyObjectPool : StudyGenericSingleton<StudyObjectPool>
@@ -7,8 +8,8 @@ public class StudyObjectPool : StudyGenericSingleton<StudyObjectPool>
     public GameObject objPrefab; // 생성될 오브젝트
 
     public int poolSize = 500;
-
-    private void Start()
+    
+    void Start()
     {
         CreateObject();
     }
@@ -22,26 +23,26 @@ public class StudyObjectPool : StudyGenericSingleton<StudyObjectPool>
         }
     }
 
-    public void EnqueueObject(GameObject obj) // 오브젝트를 다시 넣는 기능
+    public void EnqueueObject(GameObject obj) // 오브젝트를 넣는 기능
     {
         objQueue.Enqueue(obj);
         obj.SetActive(false);
     }
 
-    public GameObject DequeueObject()
+    public GameObject DequeueObject() // 오브젝트를 뽑는 기능
     {
         GameObject obj = objQueue.Dequeue();
-
+        
         return obj;
     }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (objQueue.Count < 10)
-                 CreateObject();
-
+                CreateObject();
+            
             GameObject obj = DequeueObject(); // 풀에서 오브젝트를 뽑아서 사용
             obj.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
         }

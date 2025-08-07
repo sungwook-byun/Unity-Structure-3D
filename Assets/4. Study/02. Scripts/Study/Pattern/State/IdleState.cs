@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class IdleState : MonoBehaviour, IState
@@ -19,7 +18,7 @@ public class IdleState : MonoBehaviour, IState
     {
         Debug.Log("Exit Idle");
     }
-
+    
     IEnumerator MethodA()
     {
         yield return null;

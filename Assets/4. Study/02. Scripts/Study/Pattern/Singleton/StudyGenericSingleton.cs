@@ -1,3 +1,4 @@
+﻿using UnityEditor;
 using UnityEngine;
 
 public class StudyGenericSingleton<T> : MonoBehaviour where T : MonoBehaviour
@@ -16,6 +17,7 @@ public class StudyGenericSingleton<T> : MonoBehaviour where T : MonoBehaviour
                     instance = newObject.AddComponent<T>();
                 }
             }
+
             return instance;
         }
     }
@@ -31,5 +33,4 @@ public class StudyGenericSingleton<T> : MonoBehaviour where T : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }

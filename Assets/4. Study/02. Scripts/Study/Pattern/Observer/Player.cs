@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Pattern.Observer
@@ -6,17 +6,17 @@ namespace Pattern.Observer
     public class Player : ISubject
     {
         private int score;
-
+        
         public void AddScore(int score)
         {
             this.score += score;
-            Debug.Log("ÇöÀç Á¡¼ö´Â : " + score);
-
+            Debug.Log("í˜„ì¬ ì ìˆ˜ëŠ” : " + score);
+            
             NotifyObservers();
         }
 
         public List<IObserver> Observers { get; set; }
-
+        
         public void AddObserver(IObserver observer)
         {
             Observers.Add(observer);

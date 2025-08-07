@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public interface IState
 {
-    void StateUpdate();
     void StateEnter();
+    void StateUpdate();
     void StateExit();
 }

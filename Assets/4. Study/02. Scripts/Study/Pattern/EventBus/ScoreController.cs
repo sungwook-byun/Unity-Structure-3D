@@ -1,12 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Pattern
-{ 
+{
     public class ScoreController : MonoBehaviour
     {
         private int score = 0;
 
-        private void Update()
+        void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

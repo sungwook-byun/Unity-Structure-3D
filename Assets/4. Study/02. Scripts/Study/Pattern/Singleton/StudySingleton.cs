@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class StudySingleton : MonoBehaviour
 {
-    // ¿ÜºÎ Á¢±ÙÀ» Çã¿ë, ³»ºÎ¿¡¼­ ¼³Á¤°¡´É
+    // ì™¸ë¶€ ì ‘ê·¼ì„ í—ˆìš©, ë‚´ë¶€ì—ì„œ ì„¤ì • ê°€ëŠ¥
     public static StudySingleton Instance { get; private set; }
 
-    private void Awake()
+    void Awake()
     {
         if (Instance == null)
         {
-            Instance = this; // ÇöÀç °´Ã¼¸¦ ½Ì±ÛÅÏ ÀÎ½ºÅÏ½º·Î ¼³Á¤
+            Instance = this; // í˜„ì¬ ê°ì²´ë¥¼ ì‹±ê¸€í„´ ì¸ìŠ¤í„´ìŠ¤ë¡œ ì„¤ì •
         }
         else
         {
-            Destroy(gameObject); // Áßº¹ »ı¼º ¹æÁö
+            Destroy(gameObject); // ì¤‘ë³µ ìƒì„± ë°©ì§€
         }
     }
 }

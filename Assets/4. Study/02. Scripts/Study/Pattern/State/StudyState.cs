@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class StudyState : MonoBehaviour
@@ -6,54 +7,50 @@ public class StudyState : MonoBehaviour
     public IState state;
 
     private IState idleState, moveState, attackState, jumpState;
-
-    private void Awake()
+    
+    void Awake()
     {
         idleState = gameObject.AddComponent<IdleState>();
         moveState = gameObject.AddComponent<MoveState>();
         attackState = gameObject.AddComponent<AttackState>();
         jumpState = gameObject.AddComponent<JumpState>();
+        
+        state = idleState;
     }
-
-    private void Start()
+    
+    void Start()
     {
         state.StateEnter();
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
         state.StateExit();
     }
 
-    private void Update()
+    void Update()
     {
         state?.StateUpdate();
 
-        #region ±â´ÉÅ×½ºÆ®     
+        #region ê¸°ëŠ¥ í…ŒìŠ¤íŠ¸
         if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SetState(new IdleState());
-        }
+            SetState(idleState);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SetState(new MoveState());
-        }
+            SetState(moveState);
         else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SetState(new AttackState());
-        }
+            SetState(attackState);
         #endregion
     }
 
-    public void SetState(IState newstate)
+    public void SetState(IState newState)
     {
-        if (state != newstate)
+        if (state != newState)
         {
-            state.StateExit(); // »óÅÂ º¯°æ Àü
+            state.StateExit(); // ìƒíƒœ ë³€ê²½ ì „
 
-            state = newstate; // »óÅÂ º¯°æ
+            state = newState; // ìƒíƒœ ë³€ê²½
 
-            state.StateEnter(); // »óÅÂ º¯°æ ÈÄ
+            state.StateEnter(); // ìƒíƒœ ë³€ê²½ í›„
         }
     }
 }

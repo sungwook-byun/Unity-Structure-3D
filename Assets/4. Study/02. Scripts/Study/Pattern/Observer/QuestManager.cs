@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 namespace Pattern
 {
@@ -7,7 +7,7 @@ namespace Pattern
         private bool isQuestClear1 = false;
         private bool isQuestClear2 = false;
         private bool isQuestClear3 = false;
-
+        
         public ISubject subject;
 
         void OnEnable()
@@ -25,17 +25,17 @@ namespace Pattern
             if (score >= 100 && !isQuestClear1)
             {
                 isQuestClear1 = true;
-                Debug.Log("100¡° ¥ﬁº∫");
+                Debug.Log("100Ï†ê Îã¨ÏÑ±");
             }
             else if (score >= 500 && !isQuestClear2)
             {
                 isQuestClear2 = true;
-                Debug.Log("500¡° ¥ﬁº∫");
+                Debug.Log("500Ï†ê Îã¨ÏÑ±");
             }
             else if (score >= 1000 && !isQuestClear3)
             {
                 isQuestClear3 = true;
-                Debug.Log("1000¡° ¥ﬁº∫");
+                Debug.Log("1000Ï†ê Îã¨ÏÑ±");
             }
         }
     }

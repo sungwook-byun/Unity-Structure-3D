@@ -1,22 +1,22 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 namespace Pattern
-{ 
+{
     public class ScoreManager : MonoBehaviour
     {
-        private void OnEnable()
+        void OnEnable()
         {
             StudyEventBus.onScoreChanged += UpdateScore;
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             StudyEventBus.onScoreChanged -= UpdateScore;
         }
-
+        
         private void UpdateScore(int newScore)
         {
-            Debug.Log($"ÇöÀç Á¡¼ö : {newScore}");
+            Debug.Log($"í˜„ì¬ ì ìˆ˜ : {newScore}");
         }
     }
 }

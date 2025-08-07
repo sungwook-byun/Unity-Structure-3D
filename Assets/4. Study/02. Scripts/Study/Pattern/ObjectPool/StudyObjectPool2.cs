@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.Pool;
 
 public class StudyObjectPool2 : StudyGenericSingleton<StudyObjectPool2>
@@ -6,7 +6,7 @@ public class StudyObjectPool2 : StudyGenericSingleton<StudyObjectPool2>
     public ObjectPool<GameObject> objPool;
     public GameObject objPrefab;
 
-    private void Awake()
+    void Awake()
     {
         objPool = new ObjectPool<GameObject>(CreateObject, GetObject, ReleaseObject);
     }
@@ -15,30 +15,30 @@ public class StudyObjectPool2 : StudyGenericSingleton<StudyObjectPool2>
     {
         GameObject obj = Instantiate(objPrefab, transform);
         obj.SetActive(false);
-
+        
         return obj;
     }
 
     private void GetObject(GameObject obj)
     {
-        Debug.Log("Ç®¿¡¼­ ¿ÀºêÁ§Æ® »Ì´Â ±â´É");
+        Debug.Log("í’€ì—ì„œ ì˜¤ë¸Œì íŠ¸ ë½‘ëŠ” ê¸°ëŠ¥");
         obj.SetActive(true);
     }
 
     private void ReleaseObject(GameObject obj)
     {
-        Debug.Log("Ç®¿¡ ¿ÀºêÁ§Æ®¸¦ ³Ö´Â ±â´É");
+        Debug.Log("í’€ì— ì˜¤ë¸Œì íŠ¸ë¥¼ ë„£ëŠ” ê¸°ëŠ¥");
         obj.SetActive(false);
     }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject obj = objPool.Get();
         }
-
-        // »ı¼ºµÈ ¿ÀºêÁ§Æ®¿¡¼­ »ç¿ëÇÏ´Â ±â´É
+        
+        // ìƒì„±ëœ ì˜¤ë¸Œì íŠ¸ì—ì„œ ì‚¬ìš©í•˜ëŠ” ê¸°ëŠ¥
         // StudyObjectPool2.Instance.objPool.Release(gameObject);
     }
 }

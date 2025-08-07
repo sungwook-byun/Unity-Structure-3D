@@ -1,19 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AttackState : MonoBehaviour, IState
 {
     public void StateEnter()
     {
-        Debug.Log("Enter Idle");
+        Debug.Log("Enter Attack");
     }
 
     public void StateUpdate()
     {
-        Debug.Log("Update Idle");
+        Debug.Log("Update Attack");
     }
 
     public void StateExit()
     {
-        Debug.Log("Exit Idle");
+        Debug.Log("Exit Attack");
     }
 }
