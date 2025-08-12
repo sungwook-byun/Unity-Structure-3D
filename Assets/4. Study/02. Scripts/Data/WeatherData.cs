@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class WeatherData
@@ -8,7 +8,7 @@ public class WeatherData
     {
         public Response response;
     }
-
+    
     [System.Serializable]
     public class Response
     {
@@ -46,9 +46,7 @@ public class WeatherData
         public string fcstDate;
         public string fcstTime;
         public string fcstValue;
-        public string baseData;
+        public string baseDate;
         public string baseTime;
     }
-
-
 }

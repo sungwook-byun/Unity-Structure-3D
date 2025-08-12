@@ -7,7 +7,7 @@ public class WeatherDataManager : MonoBehaviour
 {
     public enum WeatherType { Sun, Cloud, Rain, Snow }
     public WeatherType weatherType;
-
+    
     private string URL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?";
 
     public string key;
@@ -41,9 +41,9 @@ public class WeatherDataManager : MonoBehaviour
         {
             string data = www.downloadHandler.text;
 
-            Debug.Log(data); // JSON ÆÄÀÏ
+            Debug.Log(data); // JSON íŒŒì¼
 
-            weatherData = JsonUtility.FromJson<WeatherData.Root>(data);
+            weatherData = JsonUtility.FromJson<WeatherData.Root>(data); // JSON ë°ì´í„° íŒŒì‹±
 
             foreach (var item in weatherData.response.body.items.item)
             {
@@ -56,23 +56,22 @@ public class WeatherDataManager : MonoBehaviour
                     currentSKY = int.Parse(item.fcstValue);
                 }
             }
-
+            
             SetWeatherType();
         }
     }
 
     private void SetWeatherType()
     {
-        if (currentSKY == 1)
+        if (currentSKY == 1 && currentPTY == 0)
         {
             weatherType = WeatherType.Sun;
         }
-        else if (currentSKY == 3 || currentSKY == 4)
+        else if (currentSKY == 3 || currentSKY == 4) 
         {
             weatherType = WeatherType.Cloud;
-        }
-
-        if (currentPTY == 1 || currentPTY == 2 || currentPTY == 4)
+        } 
+        else if (currentPTY == 1 || currentPTY == 2 || currentPTY == 4)
         {
             weatherType = WeatherType.Rain;
         }
@@ -81,6 +80,6 @@ public class WeatherDataManager : MonoBehaviour
             weatherType = WeatherType.Snow;
         }
 
-        Debug.Log($"ÇöÀç ³¯¾¾´Â {weatherType} ÀÔ´Ï´Ù.");
+        Debug.Log($"í˜„ì¬ ë‚ ì”¨ëŠ” {weatherType}ì…ë‹ˆë‹¤.");
     }
 }

@@ -28,23 +28,23 @@ public class GoogleSheetCsvParser : MonoBehaviour
     IEnumerator Start()
     {
         UnityWebRequest www = UnityWebRequest.Get(URL);
-
+        
         yield return www.SendWebRequest();
 
         string data = www.downloadHandler.text;
-
+        
         Debug.Log(data);
 
         ParsingCharacterData(data);
     }
-
-    // µ¥ÀÌÅÍ¸¦ µ¥ÀÌÅÍ Å¬·¡½º¿¡ ¸Â°Ô ÆÄ½ÌÇÏ´Â ±â´É
+    
+    // ë°ì´í„°ë¥¼ ë°ì´í„° í´ë˜ìŠ¤ì— ë§ê²Œ íŒŒì‹±í•˜ëŠ” ê¸°ëŠ¥
     private void ParsingCharacterData(string data)
     {
         Debug.Log(data);
 
         string[] rows = data.Split('\n'); // lines
-
+        
         for (int i = 1; i < rows.Length; i++)
         {
             string[] cols = rows[i].Split(',');

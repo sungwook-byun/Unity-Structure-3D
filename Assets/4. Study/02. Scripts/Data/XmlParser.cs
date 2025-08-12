@@ -21,7 +21,7 @@ public class XmlParser : MonoBehaviour
         [XmlElement("Character")]
         public List<CharacterData> characters;
     }
-
+    
     public List<CharacterData> characterDatas = new List<CharacterData>();
 
     void Start()
@@ -35,7 +35,7 @@ public class XmlParser : MonoBehaviour
     private void ParsingCharacterXmlData(string data)
     {
         Debug.Log(data);
-
+        
         XmlSerializer serializer = new XmlSerializer(typeof(CharacterList));
 
         using (StringReader reader = new StringReader(data))

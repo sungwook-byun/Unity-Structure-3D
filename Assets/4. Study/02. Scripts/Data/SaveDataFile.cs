@@ -5,6 +5,10 @@ using System.IO;
 [System.Serializable]
 public class SaveData
 {
+    public string CharID = "C01";
+    public string Name = "Player";
+    public int HP = 100;
+    public int Attack = 10;
     public int score;
 }
 
@@ -15,8 +19,8 @@ public class SaveDataFile : MonoBehaviour
 
     void Start()
     {
-        // Application.dataPath : Assets Æú´õ
-        // Application.persistentDataPath : ÇÃ·§Æûº°·Î ¾ÈÀüÇÏ°Ô ÃßÃµÇÏ´Â ·ÎÄÃ ÀúÀå¼Ò °æ·Î
+        // Application.dataPath : Assets í´ë”
+        // Application.persistentDataPath : í”Œë«í¼ë³„ë¡œ ì•ˆì „í•˜ê²Œ ì¶”ì²œí•˜ëŠ” ë¡œì»¬ ì €ì¥ì†Œ ê²½ë¡œ
         savePath = Path.Combine(Application.persistentDataPath, "saveDataFile.json");
 
         Load();
@@ -29,7 +33,7 @@ public class SaveDataFile : MonoBehaviour
         {
             score++;
             Debug.Log("Score : " + score);
-
+            
             Save();
         }
     }
@@ -39,8 +43,8 @@ public class SaveDataFile : MonoBehaviour
         SaveData data = new SaveData();
         data.score = this.score;
 
-        string json = JsonUtility.ToJson(data);
-        // string json = JsonUtility.ToJson(data, true);
+        // string json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data, true);
 
         File.WriteAllText(savePath, json);
 

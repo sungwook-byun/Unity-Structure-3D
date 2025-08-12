@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
@@ -16,16 +16,16 @@ public class JsonParser : MonoBehaviour
     [System.Serializable]
     public class CharacterListWrapper
     {
-        public List<CharacterData> characters;
+         public List<CharacterData> characters;
     }
-
+    
     public List<CharacterData> characterDatas = new List<CharacterData>();
 
     void Start()
     {
         var dataFile = Resources.Load<TextAsset>("JsonData");
         var data = dataFile.text;
-
+        
         // var data2 = File.ReadAllText(Application.dataPath + "/Resources/JsonData.json");
 
         ParsingCharacterJsonData(data);

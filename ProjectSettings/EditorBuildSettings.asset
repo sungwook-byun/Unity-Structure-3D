@@ -15,6 +15,5 @@ EditorBuildSettings:
     path: Assets/3. Unity Book/01. Scenes/3D FPS Shooter/MainScene.unity
     guid: dddd2598a1ef68c4998a1d6ebbbec17c
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 3221d61fbbbe99b428c779132b7314ae, type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: e957ddfba35be6a4488a9acd83531e97, type: 3}
   m_UseUCBPForAssetBundles: 0
