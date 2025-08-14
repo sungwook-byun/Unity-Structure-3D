@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 33000012411497276}
   - component: {fileID: 23000011228277260}
   - component: {fileID: 64000014021002932}
-  - component: {fileID: -5831100042053188703}
-  - component: {fileID: 3137462650973631311}
+  - component: {fileID: 188844366941830063}
+  - component: {fileID: 2502121337749639168}
   m_Layer: 0
   m_Name: Eggplant
   m_TagString: Untagged
@@ -111,7 +111,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: b69b26c8b73b8bd49bf243bbe541a2e0, type: 3}
---- !u!54 &-5831100042053188703
+--- !u!54 &188844366941830063
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3137462650973631311
+--- !u!114 &2502121337749639168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,8 +147,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011817031034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b497400a2b571449c04195b2a1df16, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fcf32ff828c5384aa8cc922b7008174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: eggplant
-  icon: {fileID: 21300000, guid: ae91717140622f84ca139298efcf8cbf, type: 3}
+  name: EggPlant
+  icon: {fileID: 21300000, guid: 25b6642abcd482f48b0bf8d3be210bd4, type: 3}

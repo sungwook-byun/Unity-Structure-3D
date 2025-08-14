@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4000014221411770}
   - component: {fileID: 33000011208878360}
   - component: {fileID: 23000013679225328}
-  - component: {fileID: 3612417982604070414}
-  - component: {fileID: 586237290110453303}
-  - component: {fileID: -4966087101228741441}
+  - component: {fileID: 4762067821404253906}
+  - component: {fileID: 828614450265407635}
+  - component: {fileID: -5924288594361829332}
   m_Layer: 0
   m_Name: Turnip
   m_TagString: Untagged
@@ -89,7 +89,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &3612417982604070414
+--- !u!54 &4762067821404253906
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &586237290110453303
+--- !u!136 &828614450265407635
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,10 +136,10 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.13
-  m_Height: 0.7
+  m_Height: 0.7545472
   m_Direction: 1
-  m_Center: {x: 0.023, y: 0, z: 0}
---- !u!114 &-4966087101228741441
+  m_Center: {x: 0.025, y: 0, z: 0}
+--- !u!114 &-5924288594361829332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013984154124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b497400a2b571449c04195b2a1df16, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fcf32ff828c5384aa8cc922b7008174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: turnip
-  icon: {fileID: 21300000, guid: 69b68203b63376b4a890e06063121822, type: 3}
+  name: Turnip
+  icon: {fileID: 21300000, guid: 772ab606c56d771408b4fefe2af760dc, type: 3}

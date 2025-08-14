@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4000010382424806}
   - component: {fileID: 33000012290411620}
   - component: {fileID: 23000013408642040}
-  - component: {fileID: 8130698644450222720}
-  - component: {fileID: 3105398481258088457}
-  - component: {fileID: -3746016447725699909}
+  - component: {fileID: 4446051759794481409}
+  - component: {fileID: 602596334162103938}
+  - component: {fileID: 299142470755762652}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Untagged
@@ -89,7 +89,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &8130698644450222720
+--- !u!54 &4446051759794481409
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &3105398481258088457
+--- !u!136 &602596334162103938
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ CapsuleCollider:
   m_Height: 0.85
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3746016447725699909
+--- !u!114 &299142470755762652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000014111768446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b497400a2b571449c04195b2a1df16, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fcf32ff828c5384aa8cc922b7008174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: carrot
-  icon: {fileID: 21300000, guid: 585266aeda8d4624bae18d1af6d2b9db, type: 3}
+  name: Carrot
+  icon: {fileID: 21300000, guid: 7e943acb72838fb42b37ddda745f1a96, type: 3}
